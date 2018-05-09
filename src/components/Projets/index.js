@@ -20,7 +20,6 @@ class Projets extends Component
 	{
 		fetch('/projets/resultats')
 		.then(res =>res.json())
-		.catch(console.log("error"))
 		.then(projets => 
 			this.setState({
 				projets:  projets
@@ -36,10 +35,6 @@ class Projets extends Component
 
 			<div className="Projets">
 				<h1>Projets Page </h1>
-
-
-
-
 
 				<div className="All-Projets">
 					{

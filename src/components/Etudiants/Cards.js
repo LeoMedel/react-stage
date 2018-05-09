@@ -1,11 +1,9 @@
 //Dependencies
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-
+import { Redirect } from 'react-router-dom';
 
 //Style
 import './Etudiants.css';
-import { Button } from 'reactstrap';
 
 
 class Etudiants extends Component
@@ -14,9 +12,12 @@ class Etudiants extends Component
 	{
 		super();
 		this.state = {
-			etudiants: []
+			etudiants: [],
+			redirect: false,
+			userId: 0
 			
 		};
+		this.handleButtonClick = this.handleButtonClick.bind(this);
 	}
 
 	componentDidMount()
@@ -32,9 +33,24 @@ class Etudiants extends Component
 		);
 	}
 
+	handleButtonClick(e)
+	{
+		console.log("Hello !  " + e.target.id);
+
+		this.setState({ 
+			redirect: true,
+			userId: e.target.id
+		});
+	}
+
 
 	render()
 	{
+		const { redirect } = this.state;
+
+     if (redirect) {
+       return <Redirect to={`/etudiant/${this.state.userId}`}/>;
+     }
 		return(
 
 			<div className="Etudiants">
@@ -63,8 +79,9 @@ class Etudiants extends Component
 									<li>{ etudiant.DateDebut } - { etudiant.DateFin }</li>
 								</ul>
 								<p align="right">
-									<Button className="information" id={ etudiant.ID} color="info"><Link to={`/etudiant/${etudiant.ID}`}>Voir l'Information</Link></Button>
+									<input type="button" id={ etudiant.ID} value="Voir information" onClick={this.handleButtonClick}/>
 								</p>
+								
 							</div>
 							
 						)

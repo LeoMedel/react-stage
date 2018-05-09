@@ -10,7 +10,7 @@ import Projets from './components/Projets';
 import Home from './components/Home';
 import Page404 from './components/Page404';
 
-import EtudiantInfo from './components/EtudiantInfo';
+import Recherche from './components/Information';
 
 
 const AppRoutes = () =>
@@ -18,9 +18,13 @@ const AppRoutes = () =>
 <App>
 	<Switch>
 		<Route exact path="/" component={ Home } />
+		<Route exact path="/Home" component={ Home } />
 		<Route exact path="/etudiants" component={ Etudiants } />
 		<Route exact path="/projets" component={ Projets } />
-		<Route exact path="/etudiant/:userId" component={ EtudiantInfo} />
+		<Route path="/etudiant/:userId" exact component={Recherche} />
+		<Route path="/etudiant/:userPrenom/:userNom" exact component={Recherche} />
+		<Route path="/projet/:projetName" exact component={Recherche} />
+
 		<Route component={ Page404 } />
 	</Switch>
 </App>;

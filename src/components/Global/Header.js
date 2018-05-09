@@ -18,13 +18,13 @@ class Header extends Component {
   };
 
   render() {
-    {/*Avec this.props on peut avoir les valuer donnent dans le moment qu'on creet le component*/}
+    /*Avec this.props on peut avoir les valuer donnent dans le moment qu'on creet le component*/
     console.log(this.props);
 
-    {/*On peut recevoir les valeur comme ca, d'une facon plus facil*/}
+    /*On peut recevoir les valeur comme ca, d'une facon plus facil*/
     const { title, data } = this.props
     
-    {/*Voici c'est le meme chose pour recevoir les valeur*/}
+    /*Voici c'est le meme chose pour recevoir les valeur*/
     //const title = this.props.title;
     //const data = this.props.data;
 

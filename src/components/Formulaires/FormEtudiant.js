@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom';
 import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import './css/FormEtudiant.css';
 

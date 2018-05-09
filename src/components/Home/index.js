@@ -1,6 +1,7 @@
 
 //Dependencies
 import React, { Component }from 'react';
+import { Redirect } from 'react-router-dom'
 
 import './Home.css';
 
@@ -23,7 +24,9 @@ class Home extends Component
 			nom: 'MEDEL ILHUICATZI',
 			projetName: 'Developpement Application Soccer Android',
 			organisme: '',
-			chef: ''
+			chef: '',
+			redirectEtudiant: false,
+			redirectProjet: false
 			
 		};
 		this.chercherEtudiant = this.chercherEtudiant.bind(this);
@@ -42,16 +45,10 @@ class Home extends Component
 		e.preventDefault();
 		console.log('Chercher etudiant ...');
 
-		fetch(`/etudiant/chercher?prenom=${this.state.prenom}&nom=${this.state.nom.toUpperCase()}`)
-		.then(res => res.json())
-		.then(etudiant1 => 
-			this.setState({
-				etudiant: etudiant1
-			}, () => 
-				console.log("Etudiant trouve : ", this.state.etudiant)
-				
-			)
-		);
+		this.setState({ 
+			redirectEtudiant: true, 
+			redirectProjet: false
+		});
 
 
 	}
@@ -61,16 +58,10 @@ class Home extends Component
 		e.preventDefault();
 		console.log('Chercher Projet ...');
 
-		fetch(`/projet/chercher?titre=${this.state.projetName}`)
-		.then(res => res.json())
-		.then(projet => 
-			this.setState({
-				projet: projet
-			}, () => 
-				console.log("Projet trouve : ", this.state.projet)
-				
-			)
-		);
+		this.setState({ 
+			redirectEtudiant: false, 
+			redirectProjet: true
+		});
 	}
 
 	handleInputChanged(e)
@@ -113,6 +104,15 @@ class Home extends Component
 
 	render()
 	{
+		const { redirectEtudiant, redirectProjet } = this.state;
+
+    	if (redirectEtudiant) {
+    		return <Redirect to={`/etudiant/${this.state.prenom}/${this.state.nom}`}/>;
+    	}
+    	else if (redirectProjet) {
+    		return <Redirect to={`/projet/${this.state.projetName}`}/>;
+    	}
+    	
 		return(
 
 			<div className="Home">
