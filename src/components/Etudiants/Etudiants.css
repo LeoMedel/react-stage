@@ -1,0 +1,34 @@
+.Etudiant-Presentation
+{	
+	background: #F5A9A9;
+}
+
+.Etudiants-Trouves
+{
+	margin: 0 auto;
+	background: #58FA58;
+}
+
+.Etudiant-Resultat
+{
+	margin: 0 auto;
+	width: 90%;
+	margin-top: 3%;
+	background: #A9E2F3;
+}
+
+.Etudiant-Name
+{
+	text-align: center;
+}
+
+h4
+{
+	text-align: center;
+}
+
+.information a
+{
+  color: #FFFFFF;
+  text-decoration: none;
+}
