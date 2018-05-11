@@ -10,22 +10,22 @@ class Etudiant extends Component
 
 	//Ici on recoie les valeur pour creer le component 
 	static propTypes = {
-		//isRequired dit que on daoit avoir ces valeurs pour creer le component
     	etudiant: PropTypes.array.isRequired
+    	
     };
 
 	constructor()
 	{
 		super();
-
+/*
+		this.state ={
+			etudiant: this.props.info,
+			info: props.id
+			
+		}
+*/
 		this.handleButtonClick = this.handleButtonClick.bind(this);
 
-
-	}
-
-	componentDidMount()
-	{
-		
 	}
 
 	handleButtonClick(e)
@@ -37,8 +37,6 @@ class Etudiant extends Component
 	render()
 	{
 		const { etudiant } = this.props
-		console.log("INFO !!!  "+etudiant)
-
 		return(
 
 			<div className="Etudiant">
@@ -48,28 +46,44 @@ class Etudiant extends Component
 				{
 					etudiant.length > 0 ? (
 						<div>
-							<h1>Etudiant</h1>
+							<h1>Informations</h1>
 							{
 								etudiant.map((inf) =>
 									
-									<div className="Etudiant-Info" key={ inf.ID }>
-										<h1> { inf.Prenom } { inf.Nom } </h1>
+									<div className="Etudiant" key={ inf.etudiant_id }>
+										<h1> { inf.prenom } { inf.nom } </h1>
 										
-										<h2>Information</h2>
-										<h4>Etudiant</h4>
+										<h3>ETUDIANT</h3>
 										<ul>
-											<li><b>Formation : </b> { inf.Formation }</li>
-											<li><b>Situatuion : </b> { inf.Situation }</li>
-											<li><b>Dates : </b> { inf.DateDebut } - { inf.DateFin }</li>
+											<li><b>Formation : </b> { inf.formation }</li>
+											<li><b>Situatuion : </b> { inf.situation }</li>
+											<li><b>Dates : </b> { inf.debutEtudiant } - { inf.finEtudiant }</li>
+											<li><b>Email : </b> { inf.email }</li>
 										</ul>
 										<br/>
 									
-										<h4>PROJET</h4>
+										<h3>PROJET</h3>
 										<ul>
-											<li><b>Titre : </b>{ inf.Titre }</li>
-											<li><b>Description : </b>{ inf.Description }</li>
-											<li><b>Organisme : </b>{inf.Organisme}</li>
-										</ul>	
+											<li><b>Titre : </b>{ inf.projet }</li>
+											<li><b>Chef : </b>{ inf.chef }</li>
+											<li><b>Description : </b>{ inf.projet_description }</li>
+											<li><b>Organisme : </b>{inf.organisme}</li>
+											<li><b>DATES : </b>{ inf.debutProjet } - {inf.finProjet}</li>
+
+										</ul>
+										<br/>
+
+										<h3>PUBLICATION</h3>	
+										<ul>
+											<li><b>Titre de la Publication : </b> { inf.publication }</li>
+											<li><b>Type : </b> { inf.type }</li>
+											<li><b>Date : </b>{ inf.date }</li>
+											<li><b>No. des Pages : </b>{inf.pages}</li>
+											<li><b>DATES : </b>{ inf.debutProjet } - {inf.finProjet}</li>
+										</ul>
+										<h5>Resume</h5>
+										<p>{inf.resume}</p>
+										
 									</div>	
 								)
 							}

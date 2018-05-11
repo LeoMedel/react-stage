@@ -22,9 +22,9 @@ class Home extends Component
 			projet: [],
 			prenom: 'Leonel',
 			nom: 'MEDEL ILHUICATZI',
-			projetName: 'Developpement Application Soccer Android',
-			organisme: '',
-			chef: '',
+			projetName: 'Application SoccerAPI',
+			organisme: 'Universite Grenoble Alpes',
+			chef: 'Emmanuel',
 			redirectEtudiant: false,
 			redirectProjet: false
 			
@@ -110,7 +110,7 @@ class Home extends Component
     		return <Redirect to={`/etudiant/${this.state.prenom}/${this.state.nom}`}/>;
     	}
     	else if (redirectProjet) {
-    		return <Redirect to={`/projet/${this.state.projetName}`}/>;
+    		return <Redirect to={`/projet/${this.state.projetName}/${this.state.chef}/${this.state.organisme}`}/>;
     	}
     	
 		return(

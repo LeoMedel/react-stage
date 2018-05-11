@@ -16,7 +16,7 @@ class Recherche extends Component
 		this.state = {
 			info: [],
 			etudiant: false,
-			projet: false
+			projet: ''
 		};
 
 
@@ -24,9 +24,9 @@ class Recherche extends Component
 
 	componentDidMount()
 	{
-		const { userId, userPrenom, userNom, projetName } = this.props.match.params
+		const { userId, userPrenom, userNom, projetName, chef, organisme } = this.props.match.params
 		//On recupere l'ID de l'etudiant choisi pour faire la requete a la Base de Donnees
-		
+
 
 		if (userId !== undefined && userPrenom=== undefined && userNom=== undefined)
 		{
@@ -70,14 +70,14 @@ class Recherche extends Component
 				)
 			);
 		}
-		else if(userId === undefined && userPrenom === undefined && userNom === undefined && projetName !== undefined)
+		else if(userId === undefined && userPrenom === undefined && userNom === undefined && projetName !== undefined && chef !== undefined && organisme !== undefined)
 		{
 			console.log("Projet a chercher : " + projetName);
 			this.setState({
 				etudiant: false,
-				projet: true
+				projet: projetName
 			});
-			fetch(`/projet/chercher?titre=${projetName}`)
+			fetch(`/projet/chercher?titre=${projetName}&chef=${chef}&organisme=${organisme}`)
 			.then(res => res.json())
 			.then(info => 
 				this.setState({
@@ -102,7 +102,7 @@ class Recherche extends Component
 				this.state.etudiant ? (
 					<Etudiant etudiant={ this.state.info }/>
 	        	) : (
-	        		<Projet projet={ this.state.info }/>
+	        		<Projet projet={ this.state.info } projetName={this.state.projet}/>
 	        	)
 	        }
 				

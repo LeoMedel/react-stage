@@ -69,17 +69,18 @@ class Etudiants extends Component
 				<div className="Etudiants-Trouves">
 					{
 						this.state.etudiants.map((etudiant) =>
-							<div className="Etudiant-Resultat" key={ etudiant.ID }>
+							<div className="Etudiant-Resultat" key={ etudiant.etudiant_id }>
 								
-								<h4> { etudiant.Prenom } { etudiant.Nom } </h4>
+								<h4> { etudiant.prenom } { etudiant.nom } </h4>
 									
 								<ul>
-									<li>{ etudiant.Formation }</li>
-									<li>{ etudiant.Situation }</li>
-									<li>{ etudiant.DateDebut } - { etudiant.DateFin }</li>
+									<li>FORMATION : { etudiant.formation }</li>
+									<li>SITUATION : { etudiant.situation }</li>
+									<li>DATES : { etudiant.date_debut } - { etudiant.date_fin }</li>
+									<li>EMAIL : { etudiant.email }</li>
 								</ul>
 								<p align="right">
-									<input type="button" id={ etudiant.ID} value="Voir information" onClick={this.handleButtonClick}/>
+									<input type="button" id={ etudiant.etudiant_id} value="Voir information" onClick={this.handleButtonClick}/>
 								</p>
 								
 							</div>

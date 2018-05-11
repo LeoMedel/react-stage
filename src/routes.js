@@ -23,7 +23,7 @@ const AppRoutes = () =>
 		<Route exact path="/projets" component={ Projets } />
 		<Route path="/etudiant/:userId" exact component={Recherche} />
 		<Route path="/etudiant/:userPrenom/:userNom" exact component={Recherche} />
-		<Route path="/projet/:projetName" exact component={Recherche} />
+		<Route path="/projet/:projetName/:chef/:organisme" exact component={Recherche} />
 
 		<Route component={ Page404 } />
 	</Switch>
