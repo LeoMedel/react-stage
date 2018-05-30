@@ -1,21 +1,12 @@
 
 .Footer
 {
-	/*margin: 0 auto;
-	text-align: center;
-	
-	background: black;
-	margin: ;
-	padding: 0;
-	color:white;
-	
-	position: fixed;
-*/
-	left: 0;
+	background-color: black;
+	/*position: fixed;*/
 	bottom: 0;
 	width: 100%;
-	background-color: black;
+	height: 50px;
 	color: white;
 	text-align: center;
-	margin-top: 30px;
+	margin-top: 40px;
 }

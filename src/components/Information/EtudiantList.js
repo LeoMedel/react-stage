@@ -1,17 +1,17 @@
 
 //Dependencies
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 
 
 
 class EtudiantList extends Component
 {
 	//Ici on recoie les valeur pour creer le component 
-	static propTypes = {
+	//static propTypes = {
 		//isRequired dit que on daoit avoir ces valeurs pour creer le component
-    	projetName: PropTypes.string.isRequired
-    };
+    	//projetName: PropTypes.string.isRequired
+    //};
 
 	constructor(props)
 	{
@@ -48,7 +48,7 @@ class EtudiantList extends Component
 
 	render()
 	{
-		const {projetName} = this.props
+		//const {projetName} = this.props
 		return(
 
 			<div className="EtudiantList">

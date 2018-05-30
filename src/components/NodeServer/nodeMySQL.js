@@ -180,7 +180,7 @@ app.get('/etudiant/information2', function(req, res) {
 	const { id } = req.query;
 	console.log("Etudiant a chercher avec l'ID : "+id);
 
-	const INFORMATION_ID_ETUDIANT_QUERY = `SELECT e.etudiant_id, CONCAT(e.prenom, " ", e.nom) AS etudiant, e.formation, e.situation, e.date_debut AS debutEtudiant, e.date_fin AS finEtudiant, e.email, p.titre AS projet, p.organisme, p.date_debut AS debutProjet, p.date_fin AS finProjet, p.description AS projet_description, pu.publication_id, pu.titre AS publication, pu.type, pu.date, pu.pages, pu.resume, CONCAT(c.prenom, " ", c.nom) AS chef, c.email FROM etudiant AS e,projet AS p, publication AS pu, chefs As c WHERE e.etudiant_id = ${id} AND e.projet_id = p.projet_id AND p.chef_id = c.chef_id AND e.publication_id = pu.publication_id`
+	const INFORMATION_ID_ETUDIANT_QUERY = `SELECT e.etudiant_id, CONCAT(e.prenom, " ", e.nom) AS etudiant, e.formation, e.situation, e.date_debut AS debutEtudiant, e.date_fin AS finEtudiant, e.email AS etudiantEmail, p.titre AS projet, p.organisme, p.date_debut AS debutProjet, p.date_fin AS finProjet, p.description AS projet_description, pu.publication_id, pu.titre AS publication, pu.type, pu.date, pu.pages, pu.resume, CONCAT(c.prenom, " ", c.nom) AS chef, c.email FROM etudiant AS e,projet AS p, publication AS pu, chefs As c WHERE e.etudiant_id = ${id} AND e.projet_id = p.projet_id AND p.chef_id = c.chef_id AND e.publication_id = pu.publication_id`
 	
 	connection.query(INFORMATION_ID_ETUDIANT_QUERY, function(error, rows, fields) {
 		if (!!error) {

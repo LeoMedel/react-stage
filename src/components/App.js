@@ -14,9 +14,7 @@ import data from './data/menu';
 class App extends Component {
 
   static propTypes = {
-
     children: PropTypes.object.isRequired
-
   };
 
   render() {
@@ -24,11 +22,12 @@ class App extends Component {
     const { children } = this.props;
 
     return (
+
       <div className="App">
         {/*Depuis le nom du Component on peut envoyer des valeurs avec des variables*/}
         <Header title="React Stage" data={data}/>
         <Content body={ children }/>
-        <Footer copyrigth="&copy; Stage2018 Leonel MEDEL ILHUICATZI" />
+        <Footer className="Footer" copyrigth="&copy; Stage2018 Leonel MEDEL ILHUICATZI" />
       </div>
     );
   }

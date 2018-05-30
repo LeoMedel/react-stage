@@ -15,11 +15,15 @@ class Footer extends Component {
   };
 
   render() {
+
     /*Quand on supprimet le isRequired, on doit ajouter un valeur par default, s'il n'y a pas de valeur dans la variable*/
     const { copyright = "&copy; stage Leonel MEDEL ILHUICATZI" } = this.props;
+
     return (
+      
       <div className="Footer">
-      {/*Avec dangerouslySetInnerHTML, il va prends l'information pour l'implementer comme HTML pas securité*/}
+        
+        {/*Avec dangerouslySetInnerHTML, il va prends l'information pour l'implementer comme HTML pas securité*/}
         <p dangerouslySetInnerHTML={{__html: copyright }} />
       
       </div>

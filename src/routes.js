@@ -2,7 +2,6 @@
 //Dependencies
 import React from 'react';
 import { Route, Switch } from 'react-router-dom'
-import { browserHistory } from 'react-router';
 
 //Components
 import App from './components/App';

@@ -11,14 +11,14 @@ class Example extends React.Component {
         <FormGroup row>
           <Label for="exampleText" sm={2}>Prenom: </Label>
           <Col sm={10}>
-            <Input id="prenom" type="text" value={ this.props.prenom } onChange={this.props.inputs} placeholder="First Name"/>
+            <Input valid id="prenom" type="text" value={ this.props.prenom } onChange={this.props.inputs} placeholder="First Name"/>
           </Col>
         </FormGroup>
 
         <FormGroup row>
           <Label for="exampleText" sm={2}>Nom : </Label>
           <Col sm={10}>
-            <Input id="nom" type="text" value={ this.props.nom } onChange={this.props.inputs} placeholder="Last Name"/>
+            <Input valid id="nom" type="text" value={ this.props.nom } onChange={this.props.inputs} placeholder="Last Name"/>
           </Col>
         </FormGroup>
         

@@ -2,7 +2,6 @@
 //Dependencies
 import React, { Component }from 'react';
 import { Redirect } from 'react-router-dom'
-import { Link } from 'react-router-dom';
 
 import './Home.css';
 
@@ -46,10 +45,21 @@ class Home extends Component
 		e.preventDefault();
 		console.log('Chercher etudiant ...');
 
-		this.setState({ 
-			redirectEtudiant: true, 
-			redirectProjet: false
-		});
+
+
+		if( this.state.prenom ==='' || this.state.nom ==='' )
+		{
+
+		}
+		else
+		{
+			this.setState({ 
+				redirectEtudiant: true, 
+				redirectProjet: false
+			});
+		}
+
+		
 
 
 	}
@@ -136,16 +146,17 @@ class Home extends Component
 					{/*Au component, on envoie les methodes pour pourvoir modifier les valeurs des champs du formulaire*/}
 					<FormEtudiant inputs={ this.handleInputChanged} chercher={this.chercherEtudiant } prenom={this.state.prenom} nom={this.state.nom}/>
 				</div>
+
 				<div className="Home-Projet">
 					<h2>Formulaire Projet</h2>
 					<p>Vous devez remplir tout les champs dans le formulaire de projets et toruver l'information d'un projet</p>
 					<FormProjet inputs={ this.handleInputChanged} chercher={this.chercherProjet } titre={this.state.projetName} chef={this.state.chef} organisme={this.state.organisme}/>
 				</div>
+
 				<div className="Home-MotsCles">
 					<h2>Liste des Mots-Clés</h2>
 					<p>Voici, une petite liste avec les mots-cles avec lequels vous pourriez trouver un projet plus facile.</p>
 					<MotsCles/>
-					
 				</div>
 			</div>
 		);

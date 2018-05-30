@@ -2,7 +2,6 @@
 //Dependencies
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import {
   Collapse,
   Navbar,
@@ -68,7 +67,7 @@ class Header extends Component {
                       data && data.map((item, key) =>
                         
                         <NavItem key={key}>
-                          <NavLink href={item.url} activeClassName="selected" >{item.title}</NavLink>
+                          <NavLink href={item.url} className="selected" >{item.title}</NavLink>
                         </NavItem>
                       )
                     }

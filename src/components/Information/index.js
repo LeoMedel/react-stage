@@ -17,7 +17,9 @@ class Recherche extends Component
 			info: [],
 			etudiant: false,
 			projet: '',
-			organisme: ''
+			organisme: '',
+			chef: '',
+			etudiantCherche: ''
 		};
 
 
@@ -57,7 +59,8 @@ class Recherche extends Component
 			console.log("Etudiant cherché : "+ userPrenom + " "+ userNom.toUpperCase());
 			this.setState({
 				etudiant: true,
-				projet: false
+				projet: false,
+				etudiantCherche: `${userPrenom} ${userNom}`
 			});
 
 			fetch(`/etudiant/chercher?prenom=${userPrenom}&nom=${userNom.toUpperCase()}`)
@@ -77,7 +80,8 @@ class Recherche extends Component
 			this.setState({
 				etudiant: false,
 				projet: projetName,
-				organisme: organisme
+				organisme: organisme,
+				chef: chef
 			});
 			fetch(`/projet/chercher?titre=${projetName}&chef=${chef}&organisme=${organisme}`)
 			.then(res => res.json())
@@ -102,9 +106,9 @@ class Recherche extends Component
 
 			{
 				this.state.etudiant ? (
-					<Etudiant etudiant={ this.state.info }/>
+					<Etudiant etudiant={ this.state.info } etudiantC={this.state.etudiantCherche}/>
 	        	) : (
-	        		<Projet projet={ this.state.info } projetName={this.state.projet}/>
+	        		<Projet projet={ this.state.info } projetName={this.state.projet} chef={this.state.chef} organisme={this.state.organisme}/>
 	        	)
 	        }
 				

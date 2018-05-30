@@ -12,21 +12,14 @@ class Etudiant extends Component
 
 	//Ici on recoie les valeur pour creer le component 
 	static propTypes = {
-    	etudiant: PropTypes.array.isRequired
+    	etudiant: PropTypes.array.isRequired,
+    	etudiantC: PropTypes.string.isRequired
     	
     };
 
 	constructor()
 	{
 		super();
-/*
-		this.state ={
-			etudiant: this.props.info,
-			info: props.id
-			
-		}
-*/
-
 
 		this.handleButtonClick = this.handleButtonClick.bind(this);
 		this.toggle = this.toggle.bind(this);
@@ -54,6 +47,7 @@ class Etudiant extends Component
 	render()
 	{
 		const { etudiant } = this.props
+		const { etudiantC } = this.props
 		return(
 
 			<div className="Etudiant">
@@ -130,6 +124,7 @@ class Etudiant extends Component
 															<br/>
 															<li><b>DATES : </b>{ inf.debutProjet } - {inf.finProjet}</li>
 														</ul>
+														<Button>Voir toute l'information du projet</Button>
 													</CardText>
 												</Card>
 											</Col>
@@ -177,6 +172,7 @@ class Etudiant extends Component
 					) : (
 						<div>
 	        				<h1>Aucune Etudiant trouvé </h1>
+	        				<p className="text-center">{etudiantC}</p>
 	        			</div>
 	        		)
 	       		}

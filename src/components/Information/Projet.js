@@ -12,11 +12,11 @@ class Projet extends Component
 {
 
 	//Ici on recoie les valeur pour creer le component 
-	static propTypes = {
+	//static propTypes = {
 		//isRequired dit que on daoit avoir ces valeurs pour creer le component
-    	projet: PropTypes.array.isRequired,
-    	projetName: PropTypes.string.isRequired
-    };
+    	//projet: PropTypes.array.isRequired,
+    	//projetName: PropTypes.string.isRequired
+    //};
 
 
 	constructor()
@@ -27,7 +27,6 @@ class Projet extends Component
 		//console.log("PROPS PROJET : "+ projetName);
 		this.state = {
 			etudiants:[],
-			projetName: ''
 		}
 
 /*
@@ -54,7 +53,7 @@ class Projet extends Component
 	render()
 	{
 		const { projet } = this.props
-		const { projetName } = this.props
+		const { projetName, chef, organisme } = this.props
 		
 		return(
 			
@@ -93,6 +92,9 @@ class Projet extends Component
 	        			) : (
 	        				<div>
 	        					<h1>Aucune Projet trouvé </h1>
+	        					<p className="text-center">{projetName}
+	        					<br/>{chef}
+	        					<br/>{organisme}</p>
 	        				</div>
 	        			)
 	       			}
