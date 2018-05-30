@@ -41,18 +41,18 @@ class Projets extends Component
 						this.state.projets.map((projet) =>
 							<div className="Etudiant-Resultat" key={ projet.projet_id }>
 								
-									<h4> { projet.titre } </h4>
+								<h4> { projet.titre } </h4>
 									
-										<h5>Information</h5>
-											<ul>
-												<li><b>ORGANISME : </b> { projet.organisme }</li>
-												<li><b>CHEF : </b> { projet.chef_id }</li>
-												<li><b>DATES : </b> { projet.date_debut } --- { projet.date_fin }</li>
-											</ul>
-										<p align="right">
-											<Button color="info">Voir l'Information</Button>
-										</p>
-									<p align="right">{ projet.organisme }</p>
+									<h5>Information</h5>
+										<ul>
+											<li><b>ORGANISME : </b> { projet.organisme }</li>
+											<li><b>CHEF : </b> { projet.chef_id }</li>
+											<li><b>DATES : </b> { projet.date_debut } --- { projet.date_fin }</li>
+										</ul>
+									<p align="right">
+										<Button color="info">Voir l'Information</Button>
+									</p>
+								<p align="right">{ projet.organisme }</p>
 							</div>
 							
 						)

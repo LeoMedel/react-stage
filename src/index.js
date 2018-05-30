@@ -17,7 +17,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
 
-	<Router>
+	<Router >
 		<AppRoutes /> 
 	</Router>,
 	document.getElementById('root')

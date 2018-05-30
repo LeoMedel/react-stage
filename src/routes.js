@@ -2,6 +2,7 @@
 //Dependencies
 import React from 'react';
 import { Route, Switch } from 'react-router-dom'
+import { browserHistory } from 'react-router';
 
 //Components
 import App from './components/App';
@@ -17,15 +18,14 @@ const AppRoutes = () =>
 
 <App>
 	<Switch>
-		<Route exact path="/" component={ Home } />
-		<Route exact path="/Home" component={ Home } />
-		<Route exact path="/etudiants" component={ Etudiants } />
-		<Route exact path="/projets" component={ Projets } />
-		<Route path="/etudiant/:userId" exact component={Recherche} />
-		<Route path="/etudiant/:userPrenom/:userNom" exact component={Recherche} />
-		<Route path="/projet/:projetName/:chef/:organisme" exact component={Recherche} />
-
-		<Route component={ Page404 } />
+			<Route exact path="/" component={ Home } />
+			<Route exact path="/Home" component={ Home } />
+			<Route exact path="/etudiants" component={ Etudiants } />
+			<Route exact path="/projets" component={ Projets } />
+			<Route path="/etudiant/:userId" exact component={Recherche} />
+			<Route path="/etudiant/:userPrenom/:userNom" exact component={Recherche} />
+			<Route path="/projet/:projetName/:chef/:organisme" exact component={Recherche} />
+			<Route component={ Page404 } />
 	</Switch>
 </App>;
 

@@ -3,6 +3,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink } from 'reactstrap';
 
 //Assets, style
 import logo from './images/logo.svg';
@@ -10,12 +18,27 @@ import './css/Header.css';
 
 class Header extends Component {
 
+  constructor(props) {
+    super(props);
+
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      isOpen: false
+    };
+  }
+  toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
+
   //Ici on recoie les valeur pour creer le component 
   static propTypes = {
     //isRequired dit que on daoit avoir ces valeurs pour creer le component
     title: PropTypes.string.isRequired,
     data: PropTypes.array.isRequired
   };
+
 
   render() {
     /*Avec this.props on peut avoir les valuer donnent dans le moment qu'on creet le component*/
@@ -34,6 +57,27 @@ class Header extends Component {
         <div className="Logo">
           
             <img src={logo} className="App-logo" alt="logo" />
+
+            <div>
+              <Navbar color="light" light expand="md">
+                <NavbarBrand href="/">{ title }</NavbarBrand>
+                <NavbarToggler onClick={this.toggle} />
+                <Collapse isOpen={this.state.isOpen} navbar>
+                  <Nav className="ml-auto" navbar>
+                    {
+                      data && data.map((item, key) =>
+                        
+                        <NavItem key={key}>
+                          <NavLink href={item.url} activeClassName="selected" >{item.title}</NavLink>
+                        </NavItem>
+                      )
+                    }
+                  </Nav>
+                </Collapse>
+              </Navbar>
+            </div>
+
+          {/*
             <h2 className="App-title">{ title }</h2>
           
             
@@ -44,6 +88,9 @@ class Header extends Component {
               )
             }
           </ul>
+          */}
+
+
           
 
           

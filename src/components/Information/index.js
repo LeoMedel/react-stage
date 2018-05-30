@@ -16,7 +16,8 @@ class Recherche extends Component
 		this.state = {
 			info: [],
 			etudiant: false,
-			projet: ''
+			projet: '',
+			organisme: ''
 		};
 
 
@@ -75,7 +76,8 @@ class Recherche extends Component
 			console.log("Projet a chercher : " + projetName);
 			this.setState({
 				etudiant: false,
-				projet: projetName
+				projet: projetName,
+				organisme: organisme
 			});
 			fetch(`/projet/chercher?titre=${projetName}&chef=${chef}&organisme=${organisme}`)
 			.then(res => res.json())
