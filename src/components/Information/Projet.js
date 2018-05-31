@@ -2,8 +2,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+//Reactstrap
+import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
+import classnames from 'classnames';
+
 //Components
 import EtudiantList from './EtudiantList'
+import Etapes from './Etapes'
 
 //Style
 
@@ -17,32 +22,30 @@ class Projet extends Component
     	//projet: PropTypes.array.isRequired,
     	//projetName: PropTypes.string.isRequired
     //};
-
-
-	constructor()
+    constructor()
 	{
 		super();
 		
-		
-		//console.log("PROPS PROJET : "+ projetName);
-		this.state = {
-			etudiants:[],
-		}
 
-/*
-		this.setState({
-			projetName: this.props
-		})
-*/
+	    this.state = {
+	    	etudiants:[],
+			activeTab: '1'
+	    };
 
-		this.handleButtonClick = this.handleButtonClick.bind(this);
+	    this.toggle = this.toggle.bind(this);
+	    this.handleButtonClick = this.handleButtonClick.bind(this);
+
 	}
 
-	componentDidMount()
+	toggle(tab)
 	{
-
-	}
-
+		if (this.state.activeTab !== tab)
+		{
+			this.setState({
+				activeTab: tab
+			});
+		}
+    }
 
 	handleButtonClick(e)
 	{
@@ -63,30 +66,85 @@ class Projet extends Component
 					{
 						projet.length > 0 ? (
 							<div>
-	        					<h1> Projet</h1>
-	        					{
-									projet.map((projet) =>
-											
-										<div className="Etudiant-Resultat" key={ projet.ID }>
-											
-											<h4> { projet.titre } </h4>		
-											<h5>Information</h5>
-											<ul>
-												<li><b>ORGANISME : </b> { projet.organisme }</li>
-												<li><b>CHEF : </b> { projet.chef }</li>
-												<li><b>DATES : </b> { projet.date_debut } --- { projet.date_fin }</li>
-											</ul>
-											<p align="right">{ projet.organisme }</p>
-											<p align="right">
-												<input type="button" value="Voir l'Information"/>
-											</p>
-											
-										</div>
+								<Nav tabs>
+									<NavItem>
+										<NavLink className={classnames({ active: this.state.activeTab === '1' })} onClick={() => { this.toggle('1'); }}>
+											Projet
+										</NavLink>
+									</NavItem>
 
-									)
+									<NavItem>
+										<NavLink className={classnames({ active: this.state.activeTab === '2' })} onClick={() => { this.toggle('2'); }}>
+											Patenaires
+										</NavLink>
+									</NavItem>
+
+									<NavItem>
+										<NavLink className={classnames({ active: this.state.activeTab === '3' })} onClick={() => { this.toggle('3'); }}>
+											Etapes
+										</NavLink>
+									</NavItem>
+								</Nav>
+
+	        					{
+								projet.map((projet) =>
+											
+									<TabContent activeTab={this.state.activeTab} key={ projet.ID }>
+										<TabPane tabId="1">
+											<Row>
+												<Col sm="12">
+													<h1> { projet.projet } </h1>
+												</Col>
+
+												<Col sm="12">
+													<Card body>
+														<CardTitle>Information du Projet</CardTitle>
+														<ul>
+															<li><b>ORGANISME : </b> { projet.organisme }</li>
+															<br/>
+															<li><b>CHEF : </b> { projet.chef } ({ projet.chef_email })</li>
+															<br/>
+															<li><b>DATES : </b> { projet.date_debut } --- { projet.date_fin }</li>
+														</ul>
+													</Card>
+												</Col>
+											</Row>
+										</TabPane>
+
+										<TabPane tabId="2">
+											<Row>
+												<Col sm="12">
+													<h1> Partenaires </h1>
+												</Col>
+
+												<Col sm="12">
+													<Card body>
+														<CardTitle>Etudiants</CardTitle>
+														<EtudiantList projetName={projetName}/>
+													</Card>
+												</Col>
+											</Row>
+										</TabPane>
+
+										<TabPane tabId="3">
+											<Row>
+												<Col sm="12">
+													<h1> Etapes et Resultats </h1>
+												</Col>
+
+												<Col sm="12">
+													<Card body>
+														<CardTitle>Etapes</CardTitle>
+														<Etapes projetID={projet.ID}/>
+													</Card>
+												</Col>
+											</Row>
+										</TabPane>
+									</TabContent>
+								)
 								}
-								<h3>Partenaires : </h3>
-								<EtudiantList projetName={projetName}/>
+									
+								
 								
 	        				</div>
 	        			) : (

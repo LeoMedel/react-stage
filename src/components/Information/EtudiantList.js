@@ -3,6 +3,8 @@
 import React, { Component } from 'react';
 //import PropTypes from 'prop-types';
 
+import { ListGroup, ListGroupItem } from 'reactstrap';
+
 
 
 class EtudiantList extends Component
@@ -51,16 +53,18 @@ class EtudiantList extends Component
 		//const {projetName} = this.props
 		return(
 
-			<div className="EtudiantList">
-				<ul>
-					{
-						this.state.etudiants.map((etudiant) =>
 
-							<li key={ etudiant.etudiant_id}><b>Etudiant {etudiant.etudiant_id} :</b> { etudiant.prenom } { etudiant.nom }</li>
-						)
-					}
-				</ul>
-			</div>
+			<ListGroup flush>
+				{
+					this.state.etudiants.map((etudiant) =>
+						<ListGroupItem className="text-info text-center" key={ etudiant.etudiant_id} tag="a" href={`/etudiant/${etudiant.etudiant_id}`}> 
+							<b>Etudiant {etudiant.etudiant_id} :</b> 
+							{ etudiant.prenom } { etudiant.nom } 
+						</ListGroupItem>
+					)
+				}
+			</ListGroup>
+				
 		);
 	}
 

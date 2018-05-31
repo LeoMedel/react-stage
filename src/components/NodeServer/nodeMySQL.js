@@ -230,6 +230,38 @@ app.get('/projet/etudiants', function(req, res) {
 
 })
 
+//----------------------------------- E T A P E S ---- D A N S ---- L E ------- M E M E ----------P R O J E T-----------------------------------
+//Query pour faire la recherche des etudiants dans le meme Projet
+app.get('/projet/etapes', function(req, res) {
+	//MySQL information
+
+	const { projetID } = req.query;
+	console.log("etapes du Projet a chercher : "+projetID);
+
+	//QUERY =>    SELECT * FROM etudiants AS e, projets AS p WHERE p.ID=1 AND e.projet_ID = p.ID
+	const ETAPES_QUERY = `SELECT * FROM etapes WHERE projet_id = ${projetID}`
+	console.log("Query etudiants dans un projet ::::     "+ETAPES_QUERY);
+
+
+	connection.query(ETAPES_QUERY, function(error, rows, fields) {
+		if (!!error) {
+			console.log('Error in the Query');
+			console.log(error);
+		}
+		else
+		{
+			console.log('Successful Query\n');
+			console.log('Search student ...');
+			console.log(rows);
+			
+		}
+
+		res.json(rows);
+	});
+
+
+})
+
 
 //------------------------------------------- C H O I S I R ------------------------ P R O J E T ---------------------------------------------------------
 

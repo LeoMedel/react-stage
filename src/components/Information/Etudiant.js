@@ -89,17 +89,15 @@ class Etudiant extends Component
 											<Col sm="12">
 												<Card body>
 													<CardTitle>Information personnelle</CardTitle>
-													<CardText>
-														<ul>
-															<li><b>Formation : </b> { inf.formation }</li>
-															<br/>
-															<li><b>Situatuion : </b> { inf.situation }</li>
-															<br/>
-															<li><b>Dates : </b> { inf.debutEtudiant } - { inf.finEtudiant }</li>
-															<br/>
-															<li><b>Email : </b> { inf.etudiantEmail }</li>
-														</ul>
-													</CardText>
+													<ul>
+														<li><b>Formation : </b> { inf.formation }</li>
+														<br/>
+														<li><b>Situatuion : </b> { inf.situation }</li>
+														<br/>
+														<li><b>Dates : </b> { inf.debutEtudiant } - { inf.finEtudiant }</li>
+														<br/>
+														<li><b>Email : </b> { inf.etudiantEmail }</li>
+													</ul>
 												</Card>
 											</Col>
 										</Row>
@@ -114,18 +112,16 @@ class Etudiant extends Component
 											<Col sm="12">
 												<Card body>
 													<CardTitle>Information du Projet</CardTitle>
-													<CardText>
-														<ul>
-															<li><b>Chef : </b>{ inf.chef } ({inf.email})</li>
-															<br/>
-															<li><b>Description : </b>{ inf.projet_description }</li>
-															<br/>
-															<li><b>Organisme : </b>{inf.organisme}</li>
-															<br/>
-															<li><b>DATES : </b>{ inf.debutProjet } - {inf.finProjet}</li>
-														</ul>
-														<Button>Voir toute l'information du projet</Button>
-													</CardText>
+													<ul>
+														<li><b>Chef : </b>{ inf.chef } ({inf.email})</li>
+														<br/>
+														<li><b>Description : </b>{ inf.projet_description }</li>
+														<br/>
+														<li><b>Organisme : </b>{inf.organisme}</li>
+														<br/>
+														<li><b>DATES : </b>{ inf.debutProjet } - {inf.finProjet}</li>
+													</ul>
+													<Button>Voir toute l'information du projet</Button>
 												</Card>
 											</Col>
 										</Row>
@@ -140,24 +136,22 @@ class Etudiant extends Component
 											<Col sm="12">
 												<Card body>
 													<CardTitle>Publication</CardTitle>
-													<CardText>
-														<ul>
-															<li><b>Type : </b> { inf.type }</li>
-															<br/>
-															<li><b>Date : </b>{ inf.date }</li>
-															<br/>
-															<li><b>No. des Pages : </b>{inf.pages}</li>
-															<br/>
-															<li><b>DATES : </b>{ inf.debutProjet } - {inf.finProjet}</li>
-														</ul>
-													</CardText>
+													<ul>
+														<li><b>Type : </b> { inf.type }</li>
+														<br/>
+														<li><b>Date : </b>{ inf.date }</li>
+														<br/>
+														<li><b>No. des Pages : </b>{inf.pages}</li>
+														<br/>
+														<li><b>DATES : </b>{ inf.debutProjet } - {inf.finProjet}</li>
+													</ul>
 												</Card>
 											</Col>
 
 											<Col sm="12">
 												<Card body>
-													<CardTitle><h3>Resume</h3></CardTitle>
-													<CardText> { inf.resume } </CardText>
+													<h3>Resume</h3>
+													<p> { inf.resume } </p>
 												</Card>
 											</Col>
 										</Row>
