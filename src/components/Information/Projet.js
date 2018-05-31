@@ -1,9 +1,7 @@
 //Dependencies
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-
 //Reactstrap
-import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
+import { TabContent, TabPane, Nav, NavItem, NavLink, Card, CardTitle, Row, Col } from 'reactstrap';
 import classnames from 'classnames';
 
 //Components
@@ -15,13 +13,6 @@ import Etapes from './Etapes'
 
 class Projet extends Component
 {
-
-	//Ici on recoie les valeur pour creer le component 
-	//static propTypes = {
-		//isRequired dit que on daoit avoir ces valeurs pour creer le component
-    	//projet: PropTypes.array.isRequired,
-    	//projetName: PropTypes.string.isRequired
-    //};
     constructor()
 	{
 		super();
@@ -52,9 +43,15 @@ class Projet extends Component
 		
 	}
 
+	componentDidMount()
+{
+	console.log("Projet.js ACTIVE");
+}
+
 
 	render()
 	{
+		console.log("Projet.js render ACTIVE");
 		const { projet } = this.props
 		const { projetName, chef, organisme } = this.props
 		
@@ -75,7 +72,7 @@ class Projet extends Component
 
 									<NavItem>
 										<NavLink className={classnames({ active: this.state.activeTab === '2' })} onClick={() => { this.toggle('2'); }}>
-											Patenaires
+											Partenaires
 										</NavLink>
 									</NavItem>
 

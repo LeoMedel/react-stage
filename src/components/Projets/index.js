@@ -1,6 +1,7 @@
 
 //Dependencies
 import React, { Component }from 'react';
+import { Redirect } from 'react-router-dom';
 import { Button } from 'reactstrap';
 
 import './Projets.css'
@@ -11,9 +12,23 @@ class Projets extends Component
 	{
 		super();
 		this.state = {
-			projets: []
+			projets: [],
+			redirect: false,
+			projetid: 0
 		};
 
+		this.handleButtonClick = this.handleButtonClick.bind(this);
+
+	}
+
+	handleButtonClick(e)
+	{
+		this.setState({ 
+				redirect: true,
+				projetid: e.target.id
+			});
+			
+			//alert("Click "+e.target.id);
 	}
 
 	componentDidMount()
@@ -31,6 +46,12 @@ class Projets extends Component
 
 	render()
 	{
+		const { redirect } = this.state
+
+		if (redirect) {
+    		return <Redirect to={`/projetDetails/${this.state.projetid}`} push/>;
+    	}
+
 		return(
 
 			<div className="Projets">
@@ -53,6 +74,7 @@ class Projets extends Component
 										<Button color="info">Voir l'Information</Button>
 									</p>
 								<p align="right">{ projet.organisme }</p>
+								<Button id={projet.projet_id} onClick={this.handleButtonClick}>Allez</Button>
 							</div>
 							
 						)

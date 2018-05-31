@@ -1,7 +1,9 @@
 //Dependencies
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
+import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, Row, Col } from 'reactstrap';
 import classnames from 'classnames';
 
 //Style
@@ -25,7 +27,9 @@ class Etudiant extends Component
 		this.toggle = this.toggle.bind(this);
 
 	    this.state = {
-			activeTab: '1'
+			activeTab: '1',
+			redirect: false,
+			projetid: 0
 	    };
 
 	}
@@ -38,9 +42,9 @@ class Etudiant extends Component
     }
   }
 
-	handleButtonClick(e)
+	handleButtonClick(e, etudiant)
 	{
-		
+
 	}
 
 
@@ -48,6 +52,7 @@ class Etudiant extends Component
 	{
 		const { etudiant } = this.props
 		const { etudiantC } = this.props
+
 		return(
 
 			<div className="Etudiant">
@@ -121,7 +126,7 @@ class Etudiant extends Component
 														<br/>
 														<li><b>DATES : </b>{ inf.debutProjet } - {inf.finProjet}</li>
 													</ul>
-													<Button>Voir toute l'information du projet</Button>
+													
 												</Card>
 											</Col>
 										</Row>

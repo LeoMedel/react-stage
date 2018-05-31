@@ -69,7 +69,7 @@ app.get('/etudiant/chercher', function(req, res) {
 	console.log("Etudiant NAME a chercher : "+ prenom+ " "+nom);
 
 	//QUERY =>
-	const CHERCHER_ETUDIANT_QUERY = `SELECT e.etudiant_id, CONCAT(e.prenom, " ", e.nom) AS etudiant, e.formation, e.situation, e.date_debut AS debutEtudiant, e.date_fin AS finEtudiant, e.email as etudiantEmail, p.titre AS projet, p.organisme, p.date_debut AS debutProjet, p.date_fin AS finProjet, p.description AS projet_description, pu.publication_id, pu.titre AS publication, pu.type, pu.date, pu.pages, pu.resume, CONCAT(c.prenom, " ",c.nom) AS chef, c.email FROM etudiant AS e,projet AS p, publication AS pu, chefs As c WHERE e.prenom='${prenom}' AND e.nom='${nom}' AND e.projet_id = p.projet_id AND p.chef_id = c.chef_id AND e.publication_id = pu.publication_id`
+	const CHERCHER_ETUDIANT_QUERY = `SELECT e.etudiant_id, CONCAT(e.prenom, " ", e.nom) AS etudiant, e.formation, e.situation, e.date_debut AS debutEtudiant, e.date_fin AS finEtudiant, e.email as etudiantEmail, p.projet_id, p.titre AS projet, p.organisme, p.date_debut AS debutProjet, p.date_fin AS finProjet, p.description AS projet_description, pu.publication_id, pu.titre AS publication, pu.type, pu.date, pu.pages, pu.resume, CONCAT(c.prenom, " ",c.nom) AS chef, c.email FROM etudiant AS e,projet AS p, publication AS pu, chefs As c WHERE e.prenom='${prenom}' AND e.nom='${nom}' AND e.projet_id = p.projet_id AND p.chef_id = c.chef_id AND e.publication_id = pu.publication_id`
 
 	
 	connection.query(CHERCHER_ETUDIANT_QUERY, function(error, rows, fields) {
@@ -260,6 +260,31 @@ app.get('/projet/etapes', function(req, res) {
 	});
 
 
+})
+
+
+//Chercher un projet avec un ID.
+app.get('/chercherProjet/chercherID', function(req, res) {
+	
+	//Parametres
+	const { projetid } = req.query;
+	console.log("Projet ID a chercher : "+projetid);
+
+	//Query 
+	const PROJETID_QUERY = `SELECT p.projet_id AS ID, p.titre AS projet, p.organisme, p.date_debut, p.date_fin, p.description, CONCAT(c.prenom, " ", c.nom) AS chef, c.email AS chef_email FROM projet AS p, chefs AS c WHERE projet_id='${projetid}'`
+	
+	connection.query(PROJETID_QUERY, function(error, rows, fields) {
+		if (!!error) {
+			console.log('Error in the Query');
+		}
+		else
+		{
+			console.log('Successful Query\n');
+			console.log('Search Projet ...');
+			console.log(rows);
+		}
+		res.json(rows);
+	});
 })
 
 

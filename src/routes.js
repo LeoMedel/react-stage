@@ -24,6 +24,7 @@ const AppRoutes = () =>
 			<Route path="/etudiant/:userId" exact component={Recherche} />
 			<Route path="/etudiant/:userPrenom/:userNom" exact component={Recherche} />
 			<Route path="/projet/:projetName/:chef/:organisme" exact component={Recherche} />
+			<Route path="/projetDetails/:projetid" exact component={Recherche} />
 			<Route component={ Page404 } />
 	</Switch>
 </App>;

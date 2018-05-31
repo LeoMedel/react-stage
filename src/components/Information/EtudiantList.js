@@ -9,17 +9,9 @@ import { ListGroup, ListGroupItem } from 'reactstrap';
 
 class EtudiantList extends Component
 {
-	//Ici on recoie les valeur pour creer le component 
-	//static propTypes = {
-		//isRequired dit que on daoit avoir ces valeurs pour creer le component
-    	//projetName: PropTypes.string.isRequired
-    //};
-
 	constructor(props)
 	{
 		super(props);
-
-		//props.projetName
 
 		console.log("Whats props : "+props.projetName);
 		
@@ -27,11 +19,7 @@ class EtudiantList extends Component
 			etudiants:[],
 			projetName: props.projetName
 		}
-
-		//this.CreerList = this.CreerList.bind(this);
-
 	}
-
 
 	componentDidMount()
 	{
@@ -50,9 +38,7 @@ class EtudiantList extends Component
 
 	render()
 	{
-		//const {projetName} = this.props
 		return(
-
 
 			<ListGroup flush>
 				{
@@ -67,7 +53,6 @@ class EtudiantList extends Component
 				
 		);
 	}
-
 }
 
 export default EtudiantList;

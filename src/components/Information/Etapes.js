@@ -1,15 +1,11 @@
 
 //Dependencies
 import React, { Component } from 'react';
-//import PropTypes from 'prop-types';
-
 import { Table } from 'reactstrap';
-import { ListGroup, ListGroupItem } from 'reactstrap';
 
 
 class Etapes extends Component
 {
-
 	constructor(props)
 	{
 		super(props);
@@ -40,7 +36,6 @@ class Etapes extends Component
 
 	render()
 	{
-		//const {projetName} = this.props
 		return(
 
 			<Table striped>
@@ -61,13 +56,12 @@ class Etapes extends Component
 						<td className="text-center"><p>{ etape.resultat }</p></td>
 					</tr>
 				)
-				}
-					
+				}	
 				</tbody>
 			</Table>
+
 		);
 	}
-
 }
 
 export default Etapes;

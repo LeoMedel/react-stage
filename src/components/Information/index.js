@@ -16,10 +16,11 @@ class Recherche extends Component
 		this.state = {
 			info: [],
 			etudiant: false,
-			projet: '',
-			organisme: '',
-			chef: '',
-			etudiantCherche: ''
+			projet: false,
+			projetN:'---',
+			organisme: '---',
+			chef: '---',
+			etudiantCherche: '---'
 		};
 
 
@@ -27,11 +28,29 @@ class Recherche extends Component
 
 	componentDidMount()
 	{
-		const { userId, userPrenom, userNom, projetName, chef, organisme } = this.props.match.params
+		const { userId, userPrenom, userNom, projetName, chef, organisme, projetid } = this.props.match.params
 		//On recupere l'ID de l'etudiant choisi pour faire la requete a la Base de Donnees
 
+		if(projetid !== undefined)
+		{
+			console.log("Projet ID a chercher : " + projetid);
+			this.setState({
+				etudiant: false,
+				projet: true
+			});
 
-		if (userId !== undefined && userPrenom=== undefined && userNom=== undefined)
+			fetch(`/chercherProjet/chercherID?projetid=${projetid}`)
+			.then(res => res.json())
+			.then(info => 
+				this.setState({
+					info: info,
+				}, () => 
+					console.log("Projet trouve : ", this.state.info)
+					
+				)
+			);
+		} 
+		else if (userId !== undefined && userPrenom=== undefined && userNom=== undefined)
 		{
 			console.log("ID etudiant choisi : "+ userId);
 			this.setState({
@@ -79,7 +98,7 @@ class Recherche extends Component
 			console.log("Projet a chercher : " + projetName);
 			this.setState({
 				etudiant: false,
-				projet: projetName,
+				projetN: projetName,
 				organisme: organisme,
 				chef: chef
 			});
@@ -94,6 +113,7 @@ class Recherche extends Component
 				)
 			);
 		}
+		
 	}
 
 
@@ -108,7 +128,7 @@ class Recherche extends Component
 				this.state.etudiant ? (
 					<Etudiant etudiant={ this.state.info } etudiantC={this.state.etudiantCherche}/>
 	        	) : (
-	        		<Projet projet={ this.state.info } projetName={this.state.projet} chef={this.state.chef} organisme={this.state.organisme}/>
+	        		<Projet projet={ this.state.info } projetName={this.state.projetN} chef={this.state.chef} organisme={this.state.organisme}/>
 	        	)
 	        }
 				

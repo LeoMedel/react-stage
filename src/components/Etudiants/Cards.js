@@ -48,9 +48,10 @@ class Etudiants extends Component
 	{
 		const { redirect } = this.state;
 
-     if (redirect) {
-       return <Redirect to={`/etudiant/${this.state.userId}`} push/>;
-     }
+		if (redirect) {
+			return <Redirect to={`/etudiant/${this.state.userId}`} push/>;
+		}
+		
 		return(
 
 			<div className="Etudiants">
