@@ -21,11 +21,13 @@ const AppRoutes = () =>
 			<Route exact path="/" component={ Home } />
 			<Route exact path="/Home" component={ Home } />
 			<Route exact path="/etudiants" component={ Etudiants } />
-			<Route exact path="/projets" component={ Projets } />
+			<Route path="/projets/" component={ Projets } />
+			<Route path="/projets_results/:MotCle" component={ Projets } />
 			<Route path="/etudiant/:userId" exact component={Recherche} />
 			<Route path="/etudiant/:userPrenom/:userNom" exact component={Recherche} />
 			<Route path="/projet/:projetName/:chef/:organisme" exact component={Recherche} />
 			<Route path="/projetDetails/:projetid" exact component={ProjetDefini} />
+			
 			<Route component={ Page404 } />
 	</Switch>
 </App>;

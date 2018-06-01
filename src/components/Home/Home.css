@@ -3,12 +3,12 @@
 {
 	display: flex;
   flex-direction: column;
-  background-color: DodgerBlue;
+  /*background-color: DodgerBlue;*/
 }
 
 .Home > div
 {
-	background-color: gray;
+	/*background-color: gray;*/
   	margin: 30px;
 }
 

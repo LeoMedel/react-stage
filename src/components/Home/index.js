@@ -29,6 +29,8 @@ class Home extends Component
 			chef: 'Emmanuel',
 			redirectEtudiant: false,
 			redirectProjet: false,
+			redirectMots: false,
+			motsChoisi: '',
 			modal: false,
 			erMessage: '',
 			champs: ''
@@ -81,7 +83,8 @@ class Home extends Component
 		{
 			this.setState({ 
 				redirectEtudiant: true, 
-				redirectProjet: false
+				redirectProjet: false,
+				redirectMots: false
 			});
 		}
 	}
@@ -93,14 +96,15 @@ class Home extends Component
 
 		if( this.state.projetName ==='' || this.state.organisme ==='' || this.state.chef ==='')
 		{
-			alert("Il y a un Champs vide, S'il vous plait de bien remplir le foormulaire");
+			alert("Il y a un Champs vide, S'il vous plait de bien remplir le formulaire");
 			//this.toggle("Projet error", "S'il vous plait de bien remplir le formulaire du projet pour pouvoir realeiser la recherhe")
 		}
 		else if(this.state.projetName !=='' || this.state.organisme !=='' || this.state.chef !=='')
 		{
 			this.setState({ 
 				redirectEtudiant: false, 
-				redirectProjet: true
+				redirectProjet: true,
+				redirectMots: false
 			});
 		}
 	}
@@ -139,13 +143,25 @@ class Home extends Component
 				chef: e.target.value
 			});
 		}
+		else
+		{
+			console.log(e.target.id);
+
+			this.setState({ 
+				motsChoisi: e.target.id,
+				redirectEtudiant: false, 
+				redirectProjet: false,
+				redirectMots: true
+			});
+		}
 
 	}
 
 
 	render()
 	{
-		//const { redirectEtudiant, redirectProjet } = this.state;
+		const { motsChoisi } = this.state;
+		console.log("MOTSCLES ==> "+motsChoisi);
 
     	if (this.state.redirectEtudiant) {
     		return <Redirect to={`/etudiant/${this.state.prenom}/${this.state.nom}`} push/>;
@@ -153,6 +169,10 @@ class Home extends Component
     	else if (this.state.redirectProjet){
     		return <Redirect to={`/projet/${this.state.projetName}/${this.state.chef}/${this.state.organisme}`} push/>;
     	}
+    	else if (this.state.redirectMots){
+        return <Redirect to={`/projets_results/${this.state.motsChoisi}`} push/>;
+      }
+    	
     	
 		return(
 
@@ -175,7 +195,7 @@ class Home extends Component
 				
 				<FormProjet inputs={ this.handleInputChanged} chercher={this.chercherProjet } titre={this.state.projetName} chef={this.state.chef} organisme={this.state.organisme}/>
 				
-				<MotsCles/>
+				<MotsCles click={this.handleInputChanged }/>
 				
 			</div>
 		);

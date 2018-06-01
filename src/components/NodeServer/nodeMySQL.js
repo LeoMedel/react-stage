@@ -295,6 +295,58 @@ app.get('/chercherProjet/chercherID', function(req, res) {
 })
 
 
+
+
+//Afficher tous les projet trouves dans le Menu des PROJETS
+app.get('/projets/MotsCles', function(req, res) {
+
+	//Parametres
+	const { mots } = req.query;
+	console.log("Mots-Cles a chercher : "+mots);
+
+	//query
+	const QUERY_MOT_PROJET =`SELECT * FROM mots_cles AS mc, projet as p where mc.mot_cle ='${mots}' AND mc.mot_projet = p.mot_projet`
+	connection.query(QUERY_MOT_PROJET, function(error, rows, fields){
+
+		if (!!error) {
+			console.log('Error in the Query');
+		}
+		else
+		{
+			console.log('Successful Query\n');
+			console.log(rows);
+		}
+		res.json(rows);
+	});
+
+})
+
+
+//Afficher tous les projet trouves dans le Menu des PROJETS
+app.get('/MotsCles/All', function(req, res) {
+
+	//Parametres
+	const { motCle } = req.query;
+	console.log("Projet ID a chercher : "+motCle);
+
+	//query
+	const QUERY_PROJETS =`SELECT * FROM mots_cles`
+	connection.query(QUERY_PROJETS, function(error, rows, fields){
+
+		if (!!error) {
+			console.log('Error in the Query');
+		}
+		else
+		{
+			console.log('Successful Query\n');
+			console.log(rows);
+		}
+		res.json(rows);
+	});
+
+})
+
+
 //------------------------------------------- C H O I S I R ------------------------ P R O J E T ---------------------------------------------------------
 
 

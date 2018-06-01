@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Button } from 'reactstrap';
+import { Card, CardHeader, CardBody } from 'reactstrap';
 
 //Style
 import './Etudiants.css';
@@ -72,18 +73,23 @@ class Etudiants extends Component
 					{
 						this.state.etudiants.map((etudiant) =>
 							<div className="Etudiant-Resultat" key={ etudiant.etudiant_id }>
+								<Card >
+									<CardHeader tag="h2"> { etudiant.prenom } { etudiant.nom } </CardHeader>
+									<CardBody>
+										{/*<CardTitle>Special Title Treatment</CardTitle>*/}
+										<ul>
+											<li>FORMATION : { etudiant.formation }</li>
+											<li>SITUATION : { etudiant.situation }</li>
+											<li>DATES : { etudiant.date_debut } - { etudiant.date_fin }</li>
+											<li>EMAIL : { etudiant.email }</li>
+										</ul>
+										<p align="right">
+											<Button color="info" id={ etudiant.etudiant_id} onClick={this.handleButtonClick}>Voir information</Button>
+										</p>
+									</CardBody>
+								</Card>
 								
-								<h4> { etudiant.prenom } { etudiant.nom } </h4>
-									
-								<ul>
-									<li>FORMATION : { etudiant.formation }</li>
-									<li>SITUATION : { etudiant.situation }</li>
-									<li>DATES : { etudiant.date_debut } - { etudiant.date_fin }</li>
-									<li>EMAIL : { etudiant.email }</li>
-								</ul>
-								<p align="right">
-									<Button color="info" id={ etudiant.etudiant_id} onClick={this.handleButtonClick}>Voir information</Button>
-								</p>
+								
 								
 							</div>
 							

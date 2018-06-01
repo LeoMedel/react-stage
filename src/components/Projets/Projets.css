@@ -15,5 +15,15 @@
 	margin: 0 auto;
 	width: 90%;
 	margin-top: 3%;
-	background: #BDBDBD;
+	background: #A9E2F3;
+}
+
+.Titre
+{
+	background: #A4A4A4;
+}
+
+.Card-Body
+{
+	background: #F2F2F2;
 }

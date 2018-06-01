@@ -1,8 +1,6 @@
 //Dependencies
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, Row, Col } from 'reactstrap';
 import classnames from 'classnames';
 
@@ -158,7 +156,7 @@ class Etudiant extends Component
 														<br/>
 														<li><b>DATES : </b>{ inf.debutProjet } - {inf.finProjet}</li>
 													</ul>
-													<input type="button" id={inf.projet_id} value="Voir Projet" onClick={this.handleButtonClick}/>
+													<Button outline color="secondary" id={inf.projet_id} onClick={this.handleButtonClick}>Voir Projet</Button>
 												</Card>
 											</Col>
 										</Row>
