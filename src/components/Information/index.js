@@ -10,128 +10,84 @@ import Projet from './Projet'
 class Recherche extends Component
 {
 	
-	constructor()
+	constructor(props)
 	{
-		super();
+		super(props);
+		const { userId, userPrenom, userNom, projetName, chef, organisme, projetid } = this.props.match.params
+
 		this.state = {
 			info: [],
 			etudiant: false,
 			projet: false,
-			projetN:'---',
-			organisme: '---',
-			chef: '---',
-			etudiantCherche: '---'
+			etudiantId: userId,
+			prenom: userPrenom,
+			nom: userNom,
+			etudiantCherche: `${userPrenom} ${userNom}`,
+			projetN: projetName,
+			organisme: organisme,
+			chef: chef,
+			projetid: projetid
 		};
 
-
+		console.log(`userId ${this.state.etudiantId}, Prenom ${this.state.prenom}, Nom ${this.state.nom}, projetName ${this.state.projetN}, chef ${this.state.chef}, organisme ${this.state.organisme}, projet ID ${this.state.projetid} `);
+		
 	}
 
 	componentDidMount()
 	{
-		const { userId, userPrenom, userNom, projetName, chef, organisme, projetid } = this.props.match.params
-		//On recupere l'ID de l'etudiant choisi pour faire la requete a la Base de Donnees
-
-		if(projetid !== undefined)
+		if (this.state.etudiantId !== undefined && this.state.prenom === undefined && this.state.nom === undefined)
 		{
-			console.log("Projet ID a chercher : " + projetid);
-			this.setState({
-				etudiant: false,
-				projet: true
-			});
-
-			fetch(`/chercherProjet/chercherID?projetid=${projetid}`)
-			.then(res => res.json())
-			.then(info => 
-				this.setState({
-					info: info,
-				}, () => 
-					console.log("Projet trouve : ", this.state.info)
-					
-				)
-			);
-		} 
-		else if (userId !== undefined && userPrenom=== undefined && userNom=== undefined)
-		{
-			console.log("ID etudiant choisi : "+ userId);
+			console.log("ID etudiant choisi : "+ this.state.etudiantId);
 			this.setState({
 				etudiant: true,
 				projet: false
 			});
-
-			fetch(`/etudiant/information2?id=${userId}`)
-			.then(res => res.json())
-			.then(info => 
-
-				this.setState({
-					info: info,
-					
-
-				}, () => 
-					console.log("Information de l'Etudiant : ", this.state.info)
-
-				)
-
-			);
 		}
-		else if (userId === undefined && userPrenom !== undefined && userNom !== undefined)
+		else if (this.state.etudiantId === undefined && this.state.prenom !== undefined && this.state.nom !== undefined)
 		{
-			console.log("Etudiant cherché : "+ userPrenom + " "+ userNom.toUpperCase());
+			console.log("Etudiant cherché : "+ this.state.prenom + " "+ this.state.nom.toUpperCase());
 			this.setState({
 				etudiant: true,
-				projet: false,
-				etudiantCherche: `${userPrenom} ${userNom}`
+				projet: false
 			});
-
-			fetch(`/etudiant/chercher?prenom=${userPrenom}&nom=${userNom.toUpperCase()}`)
-			.then(res => res.json())
-			.then(info => 
-				this.setState({
-					info: info,
-				}, () => 
-					console.log("Etudiant trouve : ", this.state.info)
-					
-				)
-			);
-		}
-		else if(userId === undefined && userPrenom === undefined && userNom === undefined && projetName !== undefined && chef !== undefined && organisme !== undefined)
-		{
-			console.log("Projet a chercher : " + projetName);
-			this.setState({
-				etudiant: false,
-				projetN: projetName,
-				organisme: organisme,
-				chef: chef
-			});
-			fetch(`/projet/chercher?titre=${projetName}&chef=${chef}&organisme=${organisme}`)
-			.then(res => res.json())
-			.then(info => 
-				this.setState({
-					info: info,
-				}, () => 
-					console.log("Projet trouve : ", this.state.info)
-					
-				)
-			);
 		}
 		
+
+		else if(this.state.projetN !== undefined && this.state.chef !== undefined && this.state.organisme !== undefined)
+		{
+			console.log("Projet a chercher : " + this.state.projetN);
+			this.setState({
+				etudiant: false,
+				projet: true
+			});
+		}
+		else if(this.state.projetid !== undefined)
+		{
+			console.log("Projet ID a chercher : " + this.state.projetid);
+			this.setState({
+				etudiant: false,
+				projet: true
+			});
+		}
 	}
 
 
 
 	render()
 	{
+		console.log("ACTIVE Information.js Render")
+		const {etudiant} = this.state
+		console.log(etudiant);
 		return(
 			
 			<div className="Information-Etudiant">
-
 			{
-				this.state.etudiant ? (
-					<Etudiant etudiant={ this.state.info } etudiantC={this.state.etudiantCherche}/>
+				etudiant ? (
+					<Etudiant etudiantId={ this.state.etudiantId } etudiantPrenom={this.state.prenom} etudiantNom={this.state.nom} etudiant={this.state.etudiantCherche}/>
 	        	) : (
-	        		<Projet projet={ this.state.info } projetName={this.state.projetN} chef={this.state.chef} organisme={this.state.organisme}/>
+	        		<Projet projetid={this.state.projetid} projetName={this.state.projetN} chef={this.state.chef} organisme={this.state.organisme}/>
 	        	)
 	        }
-				
 			</div>
 		);
 	}

@@ -1,6 +1,7 @@
 //Dependencies
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import { Button } from 'reactstrap';
 
 //Style
 import './Etudiants.css';
@@ -81,7 +82,7 @@ class Etudiants extends Component
 									<li>EMAIL : { etudiant.email }</li>
 								</ul>
 								<p align="right">
-									<input type="button" id={ etudiant.etudiant_id} value="Voir information" onClick={this.handleButtonClick}/>
+									<Button color="info" id={ etudiant.etudiant_id} onClick={this.handleButtonClick}>Voir information</Button>
 								</p>
 								
 							</div>

@@ -11,17 +11,9 @@ import classnames from 'classnames';
 
 class Etudiant extends Component
 {
-
-	//Ici on recoie les valeur pour creer le component 
-	static propTypes = {
-    	etudiant: PropTypes.array.isRequired,
-    	etudiantC: PropTypes.string.isRequired
-    	
-    };
-
-	constructor()
+	constructor(props)
 	{
-		super();
+		super(props);
 
 		this.handleButtonClick = this.handleButtonClick.bind(this);
 		this.toggle = this.toggle.bind(this);
@@ -29,29 +21,69 @@ class Etudiant extends Component
 	    this.state = {
 			activeTab: '1',
 			redirect: false,
-			projetid: 0
+			projetid: 0,
+			etudiantID: props.etudiantId,
+			etudiantPrenom: props.etudiantPrenom,
+			etudiantNom: props.etudiantNom,
+			etudiantCherche: props.etudiant,
+			etudiantInfo: []
 	    };
 
+	    if (this.state.etudiantID !== undefined)
+		{
+			fetch(`/etudiant/information2?id=${this.state.etudiantID}`)
+			.then(res => res.json())
+			.then(info => 
+
+				this.setState({
+					etudiantInfo: info,
+				}, () => 
+					console.log("Information de l'Etudiant : ", this.state.etudiantInfo)
+				)
+			);
+		}
+		else if (this.state.etudiantPrenom !== undefined && this.state.etudiantNom !== undefined)
+		{
+			fetch(`/etudiant/chercher?prenom=${this.state.etudiantPrenom}&nom=${this.state.etudiantNom.toUpperCase()}`)
+			.then(res => res.json())
+			.then(info => 
+				this.setState({
+					etudiantInfo: info,
+				}, () => 
+					console.log("Etudiant trouve : ", this.state.etudiantInfo)
+					
+				)
+			);
+		}
+
 	}
 
-	toggle(tab) {
-    if (this.state.activeTab !== tab) {
-      this.setState({
-        activeTab: tab
-      });
-    }
-  }
-
-	handleButtonClick(e, etudiant)
+	toggle(tab)
 	{
-
+		if(this.state.activeTab !== tab)
+		{
+			this.setState({
+				activeTab: tab
+			});
+		}
 	}
 
+	handleButtonClick(e)
+	{
+		console.log("Regarder Projet ID "+e.target.id);
+		this.setState({ 
+			redirect: true,
+			projetid: e.target.id
+		});
+	}
 
 	render()
 	{
-		const { etudiant } = this.props
-		const { etudiantC } = this.props
+		const { redirect } = this.state
+
+		if (redirect) {
+    		return <Redirect to={`/projetDetails/${this.state.projetid}`} push/>;
+    	}
 
 		return(
 
@@ -59,7 +91,7 @@ class Etudiant extends Component
 
 				<div className="Information">
 					{
-					etudiant.length > 0 ? (
+					this.state.etudiantInfo.length > 0 ? (
 						<div>
 						<Nav tabs>
 							<NavItem>
@@ -82,7 +114,7 @@ class Etudiant extends Component
 						</Nav>
 						
 						{
-							etudiant.map((inf) =>
+							this.state.etudiantInfo.map((inf) =>
 
 								<TabContent activeTab={this.state.activeTab} key={ inf.etudiant_id }>
 									<TabPane tabId="1">
@@ -126,7 +158,7 @@ class Etudiant extends Component
 														<br/>
 														<li><b>DATES : </b>{ inf.debutProjet } - {inf.finProjet}</li>
 													</ul>
-													
+													<input type="button" id={inf.projet_id} value="Voir Projet" onClick={this.handleButtonClick}/>
 												</Card>
 											</Col>
 										</Row>
@@ -171,7 +203,7 @@ class Etudiant extends Component
 					) : (
 						<div>
 	        				<h1>Aucune Etudiant trouvé </h1>
-	        				<p className="text-center">{etudiantC}</p>
+	        				<p className="text-center">{this.state.etudiantCherche}</p>
 	        			</div>
 	        		)
 	       		}

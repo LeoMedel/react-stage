@@ -1,28 +1,41 @@
 
+.Home
+{
+	display: flex;
+  flex-direction: column;
+  background-color: DodgerBlue;
+}
+
+.Home > div
+{
+	background-color: gray;
+  	margin: 30px;
+}
+
 .Home-Presentation
 {
 	/*background: #F5A9A9;*/
 }
 
-.Home-Etudiant
+.Formulaire-Etudiant
 {
-	/*background: #9FF781;*/
-	margin-top: 1%;
-	height: 310px;
+	/*background: #9FF781;
+	margin-top: 10px;
+	height: 310px;*/
 }
 
-.Home-Projet
+.Formulaire-Projet
 {
-	/*background: #BE81F7;*/
-	margin-top: 1%;
-	height: 310px;
+	/*background: #BE81F7;
+	margin-top: 10px;
+	height: 310px;*/
 }
 
 .Home-MotsCles
 {
 	/*background: #FAAC58;
-	margin-top: 1%;*/
-	height: 270px;
+	margin-top: 160px;
+	height: 270px;*/
 }
 
 h1

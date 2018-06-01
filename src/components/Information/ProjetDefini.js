@@ -11,28 +11,22 @@ import Etapes from './Etapes'
 //Style
 
 
-class Projet extends Component
+class ProjetDefini extends Component
 {
     constructor(props)
 	{
 		super(props);
-		console.log(`Projet.js PROPS => ${props.projetid} ${props.projetName} ${props.chef} ${props.organisme}`);
+		const {projetid} = this.props.match.params
+		console.log(`ProjetDefini.js PROPS => ${projetid}`);
 
 	    this.state = {
 	    	projetInfo: [],
-	    	projetID: props.projetid,
-	    	projetName: props.projetName,
-	    	chef: props.chef,
-	    	organisme: props.organisme,
+	    	projetID: projetid,
 			activeTab: '1'
 	    };
 
 	    this.toggle = this.toggle.bind(this);
 	    this.handleButtonClick = this.handleButtonClick.bind(this);
-
-
-	    
-
 	}
 
 	toggle(tab)
@@ -54,27 +48,8 @@ class Projet extends Component
 	{
 		console.log("Projet.js ACTIVE componentDidMount");
 
-		if (this.state.projetName !== undefined && this.state.chef !== undefined && this.state.organisme !== undefined)
-	    {
-	    	if(this.state.projetInfo.length > 1)
-	    	{
-	    		console.log("Repeat");
-	    	}
-	    	else
-	    	{
-	    		fetch(`/projet/chercher?titre=${this.state.projetName}&chef=${this.state.chef}&organisme=${this.state.organisme}`)
-				.then(res => res.json())
-				.then(info => 
-					this.setState({
-						projetInfo: info,
-					}, () => 
-						console.log("Projet trouve : ", this.state.projetInfo)
-						
-					)
-				);
-	    	}
-	    	
-	    }else if(this.state.projetID !== undefined)
+	
+	if(this.state.projetID !== undefined)
 	    {
 	    	if (this.state.projetInfo.length > 1)
 	    	{
@@ -134,7 +109,7 @@ class Projet extends Component
 	        					{
 								this.state.projetInfo.map((projet) =>
 											
-									<TabContent activeTab={this.state.activeTab} key={ projet.projet_id }>
+									<TabContent activeTab={this.state.activeTab} key={ projet.ID }>
 										<TabPane tabId="1">
 											<Row>
 												<Col sm="12">
@@ -180,7 +155,7 @@ class Projet extends Component
 												<Col sm="12">
 													<Card body>
 														<CardTitle>Etapes</CardTitle>
-														<Etapes projetID={projet.projet_id}/>
+														<Etapes projetID={projet.ID}/>
 													</Card>
 												</Col>
 											</Row>
@@ -211,4 +186,4 @@ class Projet extends Component
 
 }
 
-export default Projet;
+export default ProjetDefini;

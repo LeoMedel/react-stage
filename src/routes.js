@@ -11,6 +11,7 @@ import Home from './components/Home';
 import Page404 from './components/Page404';
 
 import Recherche from './components/Information';
+import ProjetDefini from './components/Information/ProjetDefini';
 
 
 const AppRoutes = () =>
@@ -24,7 +25,7 @@ const AppRoutes = () =>
 			<Route path="/etudiant/:userId" exact component={Recherche} />
 			<Route path="/etudiant/:userPrenom/:userNom" exact component={Recherche} />
 			<Route path="/projet/:projetName/:chef/:organisme" exact component={Recherche} />
-			<Route path="/projetDetails/:projetid" exact component={Recherche} />
+			<Route path="/projetDetails/:projetid" exact component={ProjetDefini} />
 			<Route component={ Page404 } />
 	</Switch>
 </App>;

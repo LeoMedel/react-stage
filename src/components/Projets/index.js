@@ -60,21 +60,20 @@ class Projets extends Component
 				<div className="All-Projets">
 					{
 						this.state.projets.map((projet) =>
-							<div className="Etudiant-Resultat" key={ projet.projet_id }>
+							<div className="Projet-Resultat" key={ projet.projet_id }>
 								
 								<h4> { projet.titre } </h4>
 									
 									<h5>Information</h5>
 										<ul>
 											<li><b>ORGANISME : </b> { projet.organisme }</li>
-											<li><b>CHEF : </b> { projet.chef_id }</li>
+											<li><b>CHEF : </b> { projet.chef_id } { projet.prenom } {projet.nom} </li>
 											<li><b>DATES : </b> { projet.date_debut } --- { projet.date_fin }</li>
 										</ul>
 									<p align="right">
-										<Button color="info">Voir l'Information</Button>
+										<Button color="info" id={projet.projet_id} onClick={this.handleButtonClick}>Voir l'Information</Button>
 									</p>
 								<p align="right">{ projet.organisme }</p>
-								<Button id={projet.projet_id} onClick={this.handleButtonClick}>Allez</Button>
 							</div>
 							
 						)
