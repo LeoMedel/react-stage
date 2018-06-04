@@ -25,9 +25,9 @@ class App extends Component {
 
       <div className="App">
         {/*Depuis le nom du Component on peut envoyer des valeurs avec des variables*/}
-        <Header title="React Stage" data={data}/>
+        <Header title="Suivi des Projets" data={data}/>
         <Content body={ children }/>
-        <Footer className="Footer" copyrigth="&copy; Stage2018 Leonel MEDEL ILHUICATZI" />
+        <Footer className="Footer" copyrigth="&copy; Stage Laboratoire d'Informatique de Grenoble, Bâtiment IMAG" />
       </div>
     );
   }

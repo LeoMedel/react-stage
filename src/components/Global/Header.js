@@ -9,15 +9,10 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+  NavLink } from 'reactstrap';
 
 //Assets, style
-import logo from './images/logo.svg';
+import icon from './images/stageIcon.png';
 import './css/Header.css';
 
 class Header extends Component {
@@ -50,22 +45,13 @@ class Header extends Component {
 
     /*On peut recevoir les valeur comme ca, d'une facon plus facil*/
     const { title, data } = this.props
-    
-    /*Voici c'est le meme chose pour recevoir les valeur*/
-    //const title = this.props.title;
-    //const data = this.props.data;
-
 
     return (
       <div className="Header">
-        <div className="Logo">
-          
-            <img src={logo} className="App-logo" alt="logo" />
-
-            <div>
-              <Navbar color="light" light expand="md">
-                <NavbarBrand href="/">{ title }</NavbarBrand>
-                <NavbarToggler onClick={this.toggle} />
+        
+              <Navbar color="dark" dark expand="md">
+                <NavbarBrand href="/" className="mr-auto"><img src={icon} className="Logo" alt="logo" /> { title }</NavbarBrand>
+                <NavbarToggler onClick={this.toggle} className="mr-2"/>
                 <Collapse isOpen={this.state.isOpen} navbar>
                   <Nav className="ml-auto" navbar>
                     {
@@ -79,8 +65,7 @@ class Header extends Component {
                   </Nav>
                 </Collapse>
               </Navbar>
-            </div>
-        </div>
+        
       </div>
     );
   }

@@ -4,19 +4,18 @@
   position: fixed;
   z-index:1;
   left: 0;
-  bottom: 77%;
+  bottom: 86%;
   width: 100%;
   background-color: black;
-  height: 180px;
-  padding: 20px;
-  color: white;
+  height: 106px;
+  padding: 0px;
   
 
 }
 
 
-.Logo img {
-  animation: App-logo-spin infinite 20s linear;
+img {
+  animation: App-logo-spin infinite 5s linear;
   height: 80px;
 }
 
@@ -40,7 +39,7 @@
 	display: inline-block;
 	padding-left: 20px;
 }
-
+/*
 .Menu li a
 {
   color: #FFFFFF;
@@ -51,3 +50,4 @@
 {
   color: #FFFF00;
 }
+*/

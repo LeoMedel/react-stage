@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-import { Button, Container, Row, Col, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Container, Row, Col, Form, FormGroup, Input } from 'reactstrap';
 
 import './css/FormEtudiant.css'
 

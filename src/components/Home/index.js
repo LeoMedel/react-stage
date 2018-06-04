@@ -151,7 +151,6 @@ class Home extends Component
 			this.setState({
 				motsChoisi: e.target.value.substr(0, 15)
 			});
-			console.log
 		}
 		else
 		{
