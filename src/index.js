@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 //Routes
 import AppRoutes from './routes'; 
+import Login from './Login'
 
 //Assets
 import './index.css';

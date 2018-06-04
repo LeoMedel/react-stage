@@ -13,8 +13,11 @@ import Page404 from './components/Page404';
 import Recherche from './components/Information';
 import ProjetDefini from './components/Information/ProjetDefini';
 
+import Login from './Login'
+
 
 const AppRoutes = () =>
+
 
 <App>
 	<Switch>

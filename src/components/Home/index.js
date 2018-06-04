@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom'
 
 import './Home.css';
 
+
 //Components
 import FormEtudiant from '../Formulaires/FormEtudiant';
 import FormProjet from '../Formulaires/FormProjet';
@@ -39,6 +40,7 @@ class Home extends Component
 		this.chercherEtudiant = this.chercherEtudiant.bind(this);
 		this.handleInputChanged = this.handleInputChanged.bind(this);
 		this.chercherProjet = this.chercherProjet.bind(this);
+		this.handleSearchMotsCle = this.handleSearchMotsCle.bind(this);
 		this.toggle = this.toggle.bind(this);
 	}
 
@@ -107,6 +109,7 @@ class Home extends Component
 				redirectMots: false
 			});
 		}
+
 	}
 
 	handleInputChanged(e)
@@ -143,11 +146,18 @@ class Home extends Component
 				chef: e.target.value
 			});
 		}
+		else if (e.target.id === 'motsClesEcrit')
+		{
+			this.setState({
+				motsChoisi: e.target.value.substr(0, 15)
+			});
+			console.log
+		}
 		else
 		{
 			console.log(e.target.id);
 
-			this.setState({ 
+			this.setState({
 				motsChoisi: e.target.id,
 				redirectEtudiant: false, 
 				redirectProjet: false,
@@ -157,11 +167,23 @@ class Home extends Component
 
 	}
 
+	handleSearchMotsCle(e)
+	{
+		e.preventDefault();
+		
+		if (this.state.motEcrit !== '')
+		{
+			this.setState({
+				redirectEtudiant: false, 
+				redirectProjet: false,
+				redirectMots: true
+			});
+		}
+	}
+
 
 	render()
 	{
-		const { motsChoisi } = this.state;
-		console.log("MOTSCLES ==> "+motsChoisi);
 
     	if (this.state.redirectEtudiant) {
     		return <Redirect to={`/etudiant/${this.state.prenom}/${this.state.nom}`} push/>;
@@ -195,7 +217,8 @@ class Home extends Component
 				
 				<FormProjet inputs={ this.handleInputChanged} chercher={this.chercherProjet } titre={this.state.projetName} chef={this.state.chef} organisme={this.state.organisme}/>
 				
-				<MotsCles click={this.handleInputChanged }/>
+				
+				<MotsCles inputs={ this.handleInputChanged} click={this.handleSearchMotsCle } motEcrit={this.state.motEcrit}/>
 				
 			</div>
 		);
