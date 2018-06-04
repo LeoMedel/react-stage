@@ -9,7 +9,12 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink } from 'reactstrap';
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 //Assets, style
 import logo from './images/logo.svg';
@@ -33,7 +38,7 @@ class Header extends Component {
 
   //Ici on recoie les valeur pour creer le component 
   static propTypes = {
-    //isRequired dit que on daoit avoir ces valeurs pour creer le component
+    //isRequired dit que on doit avoir ces valeurs pour creer le component
     title: PropTypes.string.isRequired,
     data: PropTypes.array.isRequired
   };
@@ -75,24 +80,6 @@ class Header extends Component {
                 </Collapse>
               </Navbar>
             </div>
-
-          {/*
-            <h2 className="App-title">{ title }</h2>
-          
-            
-            <ul className="Menu">
-            {
-              data && data.map((item, key) =>
-                <li key={ key }><Link to={item.url}> {item.title} </Link></li>
-              )
-            }
-          </ul>
-          */}
-
-
-          
-
-          
         </div>
       </div>
     );

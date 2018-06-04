@@ -37,16 +37,16 @@ export default class Example extends React.Component {
           <p>Voici, vous trouverez une petite liste avec quelque mots-clés et pouvoir trouver un projet aussi facilement</p>
           
           <Container>
-            <Row>
+            <Row>    
             {
                 this.state.Mots.map((mots) =>
-                  <Col className="list-Mots"  key={mots.mot_id} >
+                  <Col xs="6" sm="4" className="list-Mots"  key={mots.mot_id} >
                     <Button block outline onClick={this.props.click} id={mots.mot_cle} color="info">{ mots.mot_cle } </Button>
                   </Col>
                 )
               }
             
-          </Row>
+          </Row>  
         </Container>
       </div>
     );
