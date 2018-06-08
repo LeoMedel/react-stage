@@ -42,8 +42,8 @@ class Etapes extends Component
 				<thead>
 					<tr>
 						<th></th>
-						<th className="text-center">Etape</th>
-						<th className="text-center">Resultat de l'Etape</th>
+						<th className="text-left">Etape</th>
+						<th className="text-left">Resultat de l'Etape</th>
 					</tr>
 				</thead>
 
@@ -52,8 +52,8 @@ class Etapes extends Component
 				this.state.etapes.map((etape, index) =>
 					<tr key={ index } >
 						<th scope="row">{ index+1 }</th>
-						<td className="text-center">{ etape.etape }</td>
-						<td className="text-center"><p>{ etape.resultat }</p></td>
+						<td className="text-left">{ etape.etape }</td>
+						<td className="text-left"><p>{ etape.resultat }</p></td>
 					</tr>
 				)
 				}	

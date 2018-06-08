@@ -105,8 +105,8 @@ class Etudiants extends Component
 						filterEtudiant.map((etudiant) =>
 							<div className="Etudiant-Resultat" key={ etudiant.etudiant_id }>
 								<Card >
-									<CardHeader tag="h2"> { etudiant.prenom } { etudiant.nom } </CardHeader>
-									<CardBody>
+									<CardHeader className="Titre-Projet" tag="h2"> { etudiant.prenom } { etudiant.nom } </CardHeader>
+									<CardBody className="Information-Projet">
 										<ul>
 											<li>FORMATION : { etudiant.formation }</li>
 											<li>SITUATION : { etudiant.situation }</li>
@@ -114,7 +114,7 @@ class Etudiants extends Component
 											<li>EMAIL : { etudiant.email }</li>
 										</ul>
 										<p align="right">
-											<Button color="info" id={ etudiant.etudiant_id} onClick={this.handleButtonClick}>Voir information</Button>
+											<Button color="secondary" id={ etudiant.etudiant_id} onClick={this.handleButtonClick}>Voir information</Button>
 										</p>
 									</CardBody>
 								</Card>

@@ -4,19 +4,34 @@
 	width: 90%;
 }
 
+.Formulaire-Etudiant
+{
+	margin: 0 auto;
+	width: 90%;
+	margin-top: 30px;
+}
+
 .Form-Projet
 {
 	margin: 0 auto;
 	width: 90%;
 }
 
-.list-Mots
+
+.Formulaire-Projet
 {
 	margin: 0 auto;
-	width: 100%;
+	width: 90%;
+	margin-top: 30px;
 }
 
-.list-Mots 
+.Mots-Cles
 {
-	text-align: center;
+	margin: 0 auto;
+	width: 90%;
+	margin-top: 30px;
+}
+.List-Mots
+{
+	margin-left: 0px;
 }

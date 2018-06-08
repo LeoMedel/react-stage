@@ -9,6 +9,7 @@ import EtudiantList from './EtudiantList'
 import Etapes from './Etapes'
 
 //Style
+import './css/Information.css';
 
 
 class Projet extends Component
@@ -105,13 +106,13 @@ class Projet extends Component
 		
 		return(
 			
-			<div className="Projet">
-				<div className="Information">
-					<div className="All-Projets">
+			<div className="Information">
+				<div className="Projet">
+					<div className="All-Information">
 					{
 						this.state.projetInfo.length > 0 ? (
 							<div>
-								<Nav tabs>
+								<Nav tabs className="Tabs-Items">
 									<NavItem>
 										<NavLink className={classnames({ active: this.state.activeTab === '1' })} onClick={() => { this.toggle('1'); }}>
 											Projet
@@ -149,7 +150,7 @@ class Projet extends Component
 															<br/>
 															<li><b>CHEF : </b> { projet.chef } ({ projet.chef_email })</li>
 															<br/>
-															<li><b>DATES : </b> { projet.date_debut } --- { projet.date_fin }</li>
+															<li><b>Date debut : </b> { projet.date_debut } <b>Date fin : </b> { projet.date_fin }</li>
 														</ul>
 													</Card>
 												</Col>
@@ -179,7 +180,7 @@ class Projet extends Component
 
 												<Col sm="12">
 													<Card body>
-														<CardTitle>Etapes</CardTitle>
+														<CardTitle>Vous pourrez regarder les etapes realisé dans le projet et leurs resultats respectivement</CardTitle>
 														<Etapes projetID={projet.projet_id}/>
 													</Card>
 												</Col>

@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, Row, Col } from 'reactstrap';
 import classnames from 'classnames';
 
-//Style
+import './css/Information.css';
 
 
 class Etudiant extends Component
@@ -85,13 +85,13 @@ class Etudiant extends Component
 
 		return(
 
-			<div className="Etudiant">
+			<div className="Information">
 
-				<div className="Information">
+				<div className="Etudiant">
 					{
 					this.state.etudiantInfo.length > 0 ? (
-						<div>
-						<Nav tabs>
+						<div className="Sections">
+						<Nav tabs className="Tabs-Items">
 							<NavItem>
 								<NavLink className={classnames({ active: this.state.activeTab === '1' })} onClick={() => { this.toggle('1'); }}>
 									Etudiant
@@ -129,7 +129,7 @@ class Etudiant extends Component
 														<br/>
 														<li><b>Situatuion : </b> { inf.situation }</li>
 														<br/>
-														<li><b>Dates : </b> { inf.debutEtudiant } - { inf.finEtudiant }</li>
+														<li><b>Date debut : </b> { inf.debutEtudiant } <b>Date fin : </b> { inf.finEtudiant }</li>
 														<br/>
 														<li><b>Email : </b> { inf.etudiantEmail }</li>
 													</ul>
@@ -154,7 +154,7 @@ class Etudiant extends Component
 														<br/>
 														<li><b>Organisme : </b>{inf.organisme}</li>
 														<br/>
-														<li><b>DATES : </b>{ inf.debutProjet } - {inf.finProjet}</li>
+														<li><b>Date debut : </b>{ inf.debutProjet } <b>Date fin : </b> {inf.finProjet}</li>
 													</ul>
 													<Button outline color="secondary" id={inf.projet_id} onClick={this.handleButtonClick}>Voir Projet</Button>
 												</Card>
@@ -178,7 +178,7 @@ class Etudiant extends Component
 														<br/>
 														<li><b>No. des Pages : </b>{inf.pages}</li>
 														<br/>
-														<li><b>DATES : </b>{ inf.debutProjet } - {inf.finProjet}</li>
+														<li><b>Date debut : </b>{ inf.debutProjet } <b>Date fin : </b> {inf.finProjet}</li>
 													</ul>
 												</Card>
 											</Col>
@@ -186,7 +186,7 @@ class Etudiant extends Component
 											<Col sm="12">
 												<Card body>
 													<h3>Resume</h3>
-													<p> { inf.resume } </p>
+													<p className="text-justify"> { inf.resume } </p>
 												</Card>
 											</Col>
 										</Row>

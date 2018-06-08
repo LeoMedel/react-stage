@@ -21,7 +21,7 @@
 	margin: 0 auto;
 	width: 90%;
 	margin-top: 3%;
-	background: #A9E2F3;
+	/*background: black;*/
 }
 
 .Etudiant-Name
@@ -34,8 +34,15 @@ h4
 	text-align: center;
 }
 
-.information a
+.Titre-Projet
 {
-  color: #FFFFFF;
-  text-decoration: none;
+	text-align: center;
+	color: white;
+	background: #2E2E2E;
 }
+
+.Information-Projet
+{
+	background: #D8D8D8;
+}
+

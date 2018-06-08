@@ -169,14 +169,19 @@ class Home extends Component
 	handleSearchMotsCle(e)
 	{
 		e.preventDefault();
+
 		
-		if (this.state.motEcrit !== '')
+		if (this.state.motsChoisi !== '')
 		{
 			this.setState({
 				redirectEtudiant: false, 
 				redirectProjet: false,
 				redirectMots: true
 			});
+		}
+		else
+		{
+			alert("Champ vide, chercher, un mot-cle")
 		}
 	}
 
@@ -200,13 +205,18 @@ class Home extends Component
 			<div className="Home">
 				<div className="Home-Presentation">
 					<h1>Suivi des Projets étudiants </h1>
-					<p>Avec cette Application vous pourrez faire le suivi des projets des etudiants de l'université qui sont enregistrés dans la base de donnees et comme ca vous pourrez trouvez aux etudiants et leur projet, savoir l'Information des etudiants ainsi que l'Introfmation de leur projet pendant leur formation</p>
+					<p className="text-justify">Avec cette Application vous pourrez faire le suivi des projets des etudiants
+					qui sont enregistrés dans une base de donnees et comme ça, vous pourrez trouvez aux etudiants et leur projet realisé dans ce moment, 
+					savoir l'Information principale comme le mail ou son fomration des etudiants, ainsi que l'Information de leur projet comme le titre
+					et L'organisme dans lequel le projet sera realisé pendant leur formation</p>
 					<br/>
 					<h2>Implementation</h2>
 					<ul>
 						<li>Recherche d'un etudiant</li>
 						<li>Recherche d'un projet</li>
-						<li>Parcourir tout</li>
+						<li>Chercher pour Mots-Clés</li>
+						<li>Parcourir par Etudiants ou Projets</li>
+						<li>Chercher un Projet par Mots-Cles</li>
 					</ul>
 				</div>
 				

@@ -7,6 +7,9 @@ import React, { Component }from 'react';
 import Etudiant from './Etudiant'
 import Projet from './Projet'
 
+//Style
+//import './css/Information.css';
+
 class Recherche extends Component
 {
 	

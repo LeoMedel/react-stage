@@ -24,10 +24,12 @@
 
 .Titre
 {
-	background: #A4A4A4;
+	text-align: center;
+	color: white;
+	background: #2E2E2E;
 }
 
 .Card-Body
 {
-	background: #F2F2F2;
+	background: #D8D8D8;
 }

@@ -32,7 +32,8 @@ export default class Example extends React.Component {
     return (
         <div className="Mots-Cles">
           <h2>Mots-Clés</h2>
-          <p>Voici, vous trouverez une petite liste avec quelque mots-clés et pouvoir trouver un projet aussi facilement</p>
+          <p>Voici, vous pourrez trouver un projet par Mots-Clés.<br/> 
+          Vous pouvez chercher par mot-cle en ecrivant dans le champs de recherche ou vous trouverez une petite liste avec quelque mots-clés et pouvoir trouver un projet aussi facilement</p>
           <Form onSubmit={this.props.click}>
             <FormGroup row>
               <Col sm={10} xs="6">
@@ -43,18 +44,19 @@ export default class Example extends React.Component {
           </Form>
           <br/>
           <br/>
-          <Container>
-            <Row>    
-            {
+          <div className="List-Mots">
+            <Container>
+              <Row>    
+              {
                 this.state.Mots.map((mots) =>
                   <Col xs="6" sm="4" className="list-Mots"  key={mots.mot_id} >
-                    <Button block outline onClick={this.props.inputs} id={mots.mot_cle} color="info">{ mots.mot_cle } </Button>
+                    <Button block outline onClick={this.props.inputs} id={mots.mot_cle} outline color="secondary">{ mots.mot_cle } </Button>
                   </Col>
                 )
               }
-            
-          </Row>  
-        </Container>
+              </Row>  
+            </Container>
+          </div>
       </div>
     );
   }

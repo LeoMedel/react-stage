@@ -9,7 +9,7 @@ class FormEtudiant extends React.Component {
     return (
         <div className="Formulaire-Etudiant">
           <h2>Formulaire Etudiant</h2>
-          <p>Vous devez remplir les champs dans le formulaire d'etudiant, pour trouver l'information de l'etudiant</p>
+          <p>Dans cette formulaire, vous devez remplir les champs de l'etudiant avec son prenom et nom, pour trouver l'information detaillé de l'etudiant </p>
 
           <Form className="Form-etudiant" onSubmit={this.props.chercher}>
             <FormGroup row>

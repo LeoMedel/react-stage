@@ -7,7 +7,7 @@ export default class FormProjet extends React.Component {
     return (
         <div className="Formulaire-Projet">
           <h2>Formulaire Projet</h2>
-          <p>Vous devez remplir tout les champs dans le formulaire de projets et toruver l'information d'un projet</p>
+          <p>Comme le Formulaire des Etudiants, ici vous devez également remplir tout les champs dans le formulaire de projet et vous trouverez l'information detaillé d'un projet</p>
 
           <Form className="Form-Projet" onSubmit={this.props.chercher}>
             <FormGroup row>

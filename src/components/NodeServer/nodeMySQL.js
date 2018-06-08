@@ -69,7 +69,15 @@ app.get('/etudiant/chercher', function(req, res) {
 	console.log("Etudiant NAME a chercher : "+ prenom+ " "+nom);
 
 	//QUERY =>
-	const CHERCHER_ETUDIANT_QUERY = `SELECT e.etudiant_id, CONCAT(e.prenom, " ", e.nom) AS etudiant, e.formation, e.situation, e.date_debut AS debutEtudiant, e.date_fin AS finEtudiant, e.email as etudiantEmail, p.projet_id, p.titre AS projet, p.organisme, p.date_debut AS debutProjet, p.date_fin AS finProjet, p.description AS projet_description, pu.publication_id, pu.titre AS publication, pu.type, pu.date, pu.pages, pu.resume, CONCAT(c.prenom, " ",c.nom) AS chef, c.email FROM etudiant AS e,projet AS p, publication AS pu, chefs As c WHERE e.prenom='${prenom}' AND e.nom='${nom}' AND e.projet_id = p.projet_id AND p.chef_id = c.chef_id AND e.publication_id = pu.publication_id`
+	const CHERCHER_ETUDIANT_QUERY = `SELECT e.etudiant_id, CONCAT(e.prenom, " ", e.nom) AS etudiant, e.formation, e.situation, 
+									 DATE_FORMAT(e.date_debut, "%d %M %Y") AS debutEtudiant, DATE_FORMAT(e.date_fin, "%d %M %Y") AS finEtudiant, 
+									 e.email as etudiantEmail, p.projet_id, p.titre AS projet, p.organisme, 
+									 DATE_FORMAT(p.date_debut, "%d %M %Y") AS debutProjet, DATE_FORMAT(p.date_fin, "%d %M %Y") AS finProjet, 
+									 p.description AS projet_description, pu.publication_id, pu.titre AS publication, pu.type, pu.date, pu.pages, 
+									 pu.resume, CONCAT(c.prenom, " ",c.nom) AS chef, c.email 
+
+									 FROM etudiant AS e,projet AS p, publication AS pu, chefs As c WHERE e.prenom='${prenom}' AND e.nom='${nom}' 
+									 AND e.projet_id = p.projet_id AND p.chef_id = c.chef_id AND e.publication_id = pu.publication_id`
 
 	
 	connection.query(CHERCHER_ETUDIANT_QUERY, function(error, rows, fields) {
@@ -103,7 +111,11 @@ app.get('/projet/chercher', function(req, res) {
 	console.log("organisme : "+organisme);
 
 	//Query 
-	const CHERCHER_PROJET_QUERY = `SELECT p.projet_id, p.titre AS projet, p.organisme, p.date_debut, p.date_fin, p.description, CONCAT(c.prenom, " ", c.nom) AS chef, c.email AS chef_email FROM projet AS p, chefs AS c WHERE titre='${titre}' AND c.prenom = '${chef}' AND p.organisme = '${organisme}'`
+	const CHERCHER_PROJET_QUERY = `SELECT p.projet_id, p.titre AS projet, p.organisme, 
+								   DATE_FORMAT(p.date_debut, "%d %M %Y") AS date_debut, DATE_FORMAT(p.date_fin, "%d %M %Y") AS date_fin, 
+								   p.description, CONCAT(c.prenom, " ", c.nom) AS chef, c.email AS chef_email 
+
+								   FROM projet AS p, chefs AS c WHERE titre='${titre}' AND c.prenom = '${chef}' AND p.organisme = '${organisme}'`
 	
 	connection.query(CHERCHER_PROJET_QUERY, function(error, rows, fields) {
 		if (!!error) {
@@ -128,7 +140,10 @@ app.get('/projet/chercher', function(req, res) {
 app.get('/etudiants/resultats', function(req, res) {
 	
 	//Query
-	const QUERY_ETUDIANT = "SELECT * FROM `etudiant`"
+	const QUERY_ETUDIANT = `SELECT *, DATE_FORMAT(e.date_debut, "%d %M %Y") AS date_debut, 
+									  DATE_FORMAT(e.date_fin, "%d %M %Y") AS date_fin 
+
+								FROM etudiant AS e`
 
 	connection.query(QUERY_ETUDIANT, function(error, rows, fields){
 		
@@ -153,7 +168,8 @@ app.get('/etudiants/resultats', function(req, res) {
 //Afficher tous les projet trouves dans le Menu des PROJETS
 app.get('/projets/resultats', function(req, res) {
 	//query
-	const QUERY_PROJETS ="SELECT * FROM `projet` AS p, chefs AS c WHERE p.chef_id = c.chef_id"
+	const QUERY_PROJETS =`SELECT *, DATE_FORMAT(p.date_debut, "%d %M %Y") AS date_debut, DATE_FORMAT(p.date_fin, "%d %M %Y") AS date_fin 
+							FROM projet AS p, chefs AS c WHERE p.chef_id = c.chef_id`
 	connection.query(QUERY_PROJETS, function(error, rows, fields){
 
 		if (!!error) {
@@ -180,7 +196,16 @@ app.get('/etudiant/information2', function(req, res) {
 	const { id } = req.query;
 	console.log("Etudiant a chercher avec l'ID : "+id);
 
-	const INFORMATION_ID_ETUDIANT_QUERY = `SELECT e.etudiant_id, CONCAT(e.prenom, " ", e.nom) AS etudiant, e.formation, e.situation, e.date_debut AS debutEtudiant, e.date_fin AS finEtudiant, e.email AS etudiantEmail, p.projet_id, p.titre AS projet, p.organisme, p.date_debut AS debutProjet, p.date_fin AS finProjet, p.description AS projet_description, pu.publication_id, pu.titre AS publication, pu.type, pu.date, pu.pages, pu.resume, CONCAT(c.prenom, " ", c.nom) AS chef, c.email FROM etudiant AS e,projet AS p, publication AS pu, chefs As c WHERE e.etudiant_id = ${id} AND e.projet_id = p.projet_id AND p.chef_id = c.chef_id AND e.publication_id = pu.publication_id`
+	const INFORMATION_ID_ETUDIANT_QUERY = `SELECT e.etudiant_id, CONCAT(e.prenom, " ", e.nom) AS etudiant, e.formation, e.situation, 
+											DATE_FORMAT(e.date_debut, "%d %M %Y") AS debutEtudiant, DATE_FORMAT(e.date_fin, "%d %M %Y") AS finEtudiant,
+											e.email AS etudiantEmail, p.projet_id, p.titre AS projet, p.organisme, 
+											DATE_FORMAT(p.date_debut, "%d %M %Y") AS debutProjet, DATE_FORMAT(p.date_fin, "%d %M %Y") AS finProjet, 
+											p.description AS projet_description, pu.publication_id, pu.titre AS publication, pu.type, 
+											DATE_FORMAT(pu.date, "%d %M %Y") AS date, pu.pages, pu.resume, CONCAT(c.prenom, " ", c.nom) AS chef, c.email 
+
+											FROM etudiant AS e,projet AS p, publication AS pu, chefs As c 
+											WHERE e.etudiant_id = ${id} 
+											AND e.projet_id = p.projet_id AND p.chef_id = c.chef_id AND e.publication_id = pu.publication_id`
 	
 	connection.query(INFORMATION_ID_ETUDIANT_QUERY, function(error, rows, fields) {
 		if (!!error) {
@@ -207,7 +232,9 @@ app.get('/projet/etudiants', function(req, res) {
 	console.log("Projet NAME a chercher : "+projet);
 
 	//QUERY =>    SELECT * FROM etudiants AS e, projets AS p WHERE p.ID=1 AND e.projet_ID = p.ID
-	const INFORMATION_ETUDIANT_QUERY = `SELECT p.projet_id, e.etudiant_id, e.projet_id, e.prenom, e.nom FROM etudiant AS e, projet AS p WHERE p.titre = '${projet}' AND e.projet_id = p.projet_id`
+	const INFORMATION_ETUDIANT_QUERY = `SELECT p.projet_id, e.etudiant_id, e.projet_id, e.prenom, e.nom 
+										FROM etudiant AS e, projet AS p WHERE p.titre = '${projet}' AND e.projet_id = p.projet_id`
+	
 	console.log("Query etudiants dans un projet ::::     "+INFORMATION_ETUDIANT_QUERY);
 
 
@@ -272,7 +299,8 @@ app.get('/chercherProjet/chercherID', function(req, res) {
 
 	//Query 
 	const PROJETID_QUERY = `SELECT 
-	p.projet_id AS ID, p.titre AS projet, p.organisme, p.date_debut, p.date_fin, p.description, 
+	p.projet_id AS ID, p.titre AS projet, p.organisme, 
+	DATE_FORMAT(p.date_debut, "%d %M %Y") AS date_debut, DATE_FORMAT(p.date_fin, "%d %M %Y") AS date_fin, p.description, 
     CONCAT(c.prenom, " ", c.nom) AS chef, c.chef_id, c.email AS chef_email
     FROM projet AS p, chefs AS c
     WHERE p.projet_id ='${projetid}'
@@ -305,11 +333,12 @@ app.get('/projets/MotsCles', function(req, res) {
 	console.log("Mots-Cles a chercher : "+mots);
 
 	//query
-	const QUERY_MOT_PROJET =`SELECT * FROM mots_cles AS mc, projet as p where mc.mot_cle ='${mots}' AND mc.mot_projet = p.mot_projet`
+	const QUERY_MOT_PROJET =`SELECT *, DATE_FORMAT(p.date_debut, "%d %M %Y") AS date_debut, DATE_FORMAT(p.date_fin, "%d %M %Y") AS date_fin FROM mots_cles AS mc, projet as p, chefs as c WHERE mc.mot_cle ='${mots}' AND mc.mot_projet = p.mot_projet AND p.chef_id = c.chef_id`
 	connection.query(QUERY_MOT_PROJET, function(error, rows, fields){
 
 		if (!!error) {
 			console.log('Error in the Query');
+			console.log(QUERY_MOT_PROJET);
 		}
 		else
 		{
